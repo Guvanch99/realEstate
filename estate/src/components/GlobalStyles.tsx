@@ -10,8 +10,10 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   html, body, #root {
+    font-family: Inter, sans-serif;
     height: 100%;
     width: 100%;
+
   }
 
   ul {

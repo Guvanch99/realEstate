@@ -1,0 +1,17 @@
+{
+  "lang": {
+    "en": "en",
+    "ru": "ru"
+  },
+  "navbar": {
+    "home": "Home",
+    "apartments": "Apartments",
+    "about": "About",
+    "contacts": "Contacts"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "footerText": "2022 Happy Home All rights reserved"
+}

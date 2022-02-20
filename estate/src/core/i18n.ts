@@ -32,8 +32,8 @@ i18n.on('languageChanged', () => {
   let { pathname, search } = window.location
   const queryLang = new URLSearchParams(search).get(lookupQuerystring)
 
-  if (!!queryLang) {
-    const conditionRegex:RegExp = /[&?]?(lang=\w+?&?)$|(lang=\w+&?)/gi
+  if (queryLang) {
+    const conditionRegex: RegExp = /[&?]?(lang=\w+?&?)$|(lang=\w+&?)/gi
     search = search.replace(conditionRegex, '')
 
     pathname = `${pathname}${search}`

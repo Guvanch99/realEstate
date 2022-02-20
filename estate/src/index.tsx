@@ -4,25 +4,19 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { QueryClientProvider } from 'react-query'
 import styled, { ThemeProvider } from 'styled-components/macro'
 import Routes from './Routes'
-import {queryClient} from "./core/queryClient";
-import {GlobalStyles} from "./components/GlobalStyles";
-import {styledTheme} from "./styles/stylesTheme";
-
-export const ContainerStyled = styled.div`
-  width: 100%;
-  height: 100%;
-`
+import { queryClient } from './core/queryClient'
+import { GlobalStyles } from './components/GlobalStyles'
+import { styledTheme } from './styles/stylesTheme'
+import './core/i18n'
 
 const App = () => (
   <ThemeProvider theme={styledTheme}>
-    <GlobalStyles />
+    <GlobalStyles/>
     <QueryClientProvider client={queryClient}>
-      <ContainerStyled>
-        <Routes />
-      </ContainerStyled>
-      <ReactQueryDevtools />
+      <Routes/>
+      <ReactQueryDevtools/>
     </QueryClientProvider>
   </ThemeProvider>
 )
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App/>, document.getElementById('root'))
