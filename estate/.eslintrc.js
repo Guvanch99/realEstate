@@ -31,7 +31,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-use-before-define': 'off',
     'comma-dangle': ['error', 'never'],
-    'no-param-reassign': ['error', { props: false }],
+    'no-param-reassign': 'off',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-empty-function': 'off',

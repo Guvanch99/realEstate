@@ -17,7 +17,7 @@ const Navigation = () => {
     <MenuStyled>
       <MenuListStyled>
         <CustomNavlink end to="/">
-          {t('navbar.main')}
+          {t('navbar.home')}
         </CustomNavlink>
       </MenuListStyled>
       <MenuListStyled>

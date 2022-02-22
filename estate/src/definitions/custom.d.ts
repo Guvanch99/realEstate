@@ -4,6 +4,8 @@ declare module '*.svg'
 
 declare module '*.png'
 
+declare module '*.jpeg';
+
 declare module '*.module.scss' {
   const classes: any
   export default classes

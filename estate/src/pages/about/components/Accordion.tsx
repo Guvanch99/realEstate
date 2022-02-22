@@ -2,72 +2,51 @@ import * as React from 'react'
 import { Accordion as MuiAccordion } from '@mui/material'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
-import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import styled from 'styled-components/macro'
+import { fontFamily } from '../../../styles/mxins'
+import { AccordionData } from '../data'
+
+const AccordionWrapper = styled.div`
+  width: 700px;
+  margin: 0 auto;
+`
+
+const HeaderText = styled.p`
+  ${fontFamily('Inter')};
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+`
+
+const BodyText = styled.p`
+  ${fontFamily('Inter')};
+  font-size: 14px;
+  font-weight: 400;
+`
 
 const Accordion = () => (
-  <div>
-    <MuiAccordion>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon/>}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
-      >
-        <Typography>Accordion 1</Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
-        </Typography>
-      </AccordionDetails>
-    </MuiAccordion>
-    <MuiAccordion>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon/>}
-        aria-controls="panel2a-content"
-        id="panel2a-header"
-      >
-        <Typography>Accordion 2</Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
-        </Typography>
-      </AccordionDetails>
-    </MuiAccordion>
-    <MuiAccordion>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon/>}
-        aria-controls="panel2a-content"
-        id="panel2a-header"
-      >
-        <Typography>Accordion 2</Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
-        </Typography>
-      </AccordionDetails>
-    </MuiAccordion>
-    <MuiAccordion>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon/>}
-        aria-controls="panel2a-content"
-        id="panel2a-header"
-      >
-        <Typography>Accordion 2</Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
-        </Typography>
-      </AccordionDetails>
-    </MuiAccordion>
-  </div>
+  <AccordionWrapper>
+    {
+      AccordionData.map(({ id, header, body }) => (
+        <MuiAccordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon/>}
+            aria-controls={id}
+            id={id}
+          >
+            <HeaderText>{header}</HeaderText>
+          </AccordionSummary>
+          <AccordionDetails>
+            <BodyText>
+              {body}
+            </BodyText>
+          </AccordionDetails>
+        </MuiAccordion>
+      ))
+    }
+  </AccordionWrapper>
 )
 
 export default Accordion
