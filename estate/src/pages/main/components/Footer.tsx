@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { flex } from '../../../styles/mxins'
 
 const FooterStyled = styled.footer`
+  margin-top: 24px;
   ${flex({ justify: 'center', align: 'center' })}
   background-color: ${({ theme }) => theme.colors.secondary};
   height: 80px;
