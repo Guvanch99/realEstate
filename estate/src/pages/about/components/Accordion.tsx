@@ -8,7 +8,7 @@ import { fontFamily } from '../../../styles/mxins'
 import { AccordionData } from '../data'
 
 const AccordionWrapper = styled.div`
-  width: 700px;
+  max-width: 1250px;
   margin: 0 auto;
 `
 
