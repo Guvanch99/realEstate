@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes as RouterRoutes } from 'react-router-dom'
-import Main from './pages/main/components/Main'
-import Home from './pages/home/components/Home'
-import About from './pages/about/components/About'
-import Contacts from './pages/contacts/components/Contacts'
+import Main from './features/main/components/Main'
+import Home from './features/home/components/Home'
+import About from './features/about/components/About'
+import Contacts from './features/contacts/components/Contacts'
 
 const Routes = () => (
   <BrowserRouter>

@@ -1,14 +1,15 @@
 import ImageSlider from './ImageSlider'
 import Testimonial from './Testimonial'
-import Services from './Services'
-import LogoSlider from './LogoSlider'
+import Services from './Gallery'
+import Chart from './Chart'
 
 const Home = () => (
   <>
     <ImageSlider/>
-    <Testimonial/>
     <Services/>
-    <LogoSlider/>
+    <Chart/>
+    <Testimonial/>
+
   </>
 )
 

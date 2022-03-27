@@ -1,9 +1,10 @@
+import { TOptions } from 'i18next'
 import FirstImage from './assets/first.jpeg'
 import SecondImage from './assets/second.jpeg'
 import ThirdImage from './assets/third.jpeg'
 import FourthImage from './assets/fourth.jpeg'
 import FifthImage from './assets/fifth.jpeg'
-import { TServices } from './type'
+import { TChart, TGallery, TServices } from './type'
 
 export const images = [
   {
@@ -26,6 +27,68 @@ export const images = [
     url: FifthImage,
     text: 'image5'
   }
+]
+
+export const selectOptions: TOptions = ['All', 'One Room', 'Two Room', 'Three Room', 'Four Room', 'Five Room']
+
+export const gallery: TGallery[] = [
+  {
+    status: 'One Room',
+    image: 'one1.jpeg'
+  },
+  {
+    status: 'One Room',
+    image: 'one2.jpeg'
+  },
+  {
+    status: 'One Room',
+    image: 'one3.jpeg'
+  },
+  {
+    status: 'Two Room',
+    image: 'two1.jpeg'
+  },
+  {
+    status: 'Two Room',
+    image: 'two2.jpeg'
+  },
+  {
+    status: 'Two Room',
+    image: 'two3.jpeg'
+  },
+  {
+    status: 'Two Room',
+    image: 'two4.jpeg'
+  },
+  {
+    status: 'Three Room',
+    image: 'three1.png'
+  },
+  {
+    status: 'Three Room',
+    image: 'three2.png'
+  },
+  {
+    status: 'Three Room',
+    image: 'three3.jpeg'
+  },
+  {
+    status: 'Three Room',
+    image: 'three4.jpeg'
+  },
+  {
+    status: 'Four Room',
+    image: 'four1.jpeg'
+  },
+  {
+    status: 'Four Room',
+    image: 'four3.jpeg'
+  },
+  {
+    status: 'Five Room',
+    image: 'five1.jpeg'
+  }
+
 ]
 
 export const ServicesData: TServices[] = [
@@ -69,19 +132,10 @@ export const ServicesData: TServices[] = [
   }
 ]
 
-export const LogoData: string[] = [
-  'https://www.scorepromotions.com/assets/score/img/clients/Air-Canada-01.jpg',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png',
-  'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png'
+export const dataChart: TChart[] = [
+  { name: 'One Room', value: 20 },
+  { name: 'Two Room', value: 10 },
+  { name: 'Three Room', value: 40 },
+  { name: 'Four Room', value: 20 },
+  { name: 'Five Room', value: 20 }
 ]
