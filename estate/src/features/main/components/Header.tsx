@@ -1,21 +1,21 @@
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import LogoImg from '../assets/logo.svg'
 import { flex } from '../../../styles/mxins'
 import Switch from './Switch'
 import Language from './Language'
 import { HeaderProvider } from '../state/useHeader'
 import Navigation from './Navigation'
+import { LogoIcon } from '../../../core/svg/icons/LogoIcon'
 
 const HeaderStyled = styled.header`
   ${flex({ justify: 'space-between', align: 'center' })};
   padding: 0 16px;
 `
-const LogoStyled = styled.img`
+const LogoStyled = styled.div`
   width: 150px;
   height: 100px;
-  object-fit: contain;
+  color: ${({ theme }) => theme.colors.secondary};
 `
 
 export const CustomNavlink = styled(NavLink)`
@@ -43,7 +43,9 @@ const Header = () => {
   return (
     <HeaderStyled>
       <CustomNavlink end to="/">
-        <LogoStyled src={LogoImg} alt="logo"/>
+        <LogoStyled>
+          <LogoIcon/>
+        </LogoStyled>
       </CustomNavlink>
       <Navigation/>
       <Switch/>

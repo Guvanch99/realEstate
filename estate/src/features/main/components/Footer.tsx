@@ -11,7 +11,7 @@ const FooterStyled = styled.footer`
 
 const TextStyled = styled.h2`
   padding: 25px 16px;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.white};
 `
 
 const Footer = () => {
