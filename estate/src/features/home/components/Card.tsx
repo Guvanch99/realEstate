@@ -46,7 +46,7 @@ const FooterStyled = styled(NavLink)`
   padding: 4px 16px;
 
   :hover {
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.primary};
     background: ${({ theme }) => theme.colors.blue500};
   }
 `

@@ -13,14 +13,14 @@ const HeaderStyled = styled.h1`
   text-align: center;
   line-height: 24px;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.green800};
+  color: ${({ theme }) => theme.colors.secondary};
 `
 const BodyStyled = styled.p`
   margin-top: 16px;
   text-align: center;
   line-height: 20px;
   font-weight: 500;
-  color: ${({ theme }) => theme.colors.grey600};
+  color: ${({ theme }) => theme.colors.secondary};
 `
 
 const FooterStyled = styled.p`
@@ -28,7 +28,7 @@ const FooterStyled = styled.p`
   text-align: center;
   line-height: 20px;
   font-weight: 400;
-  color: ${({ theme }) => theme.colors.green800};
+  color: ${({ theme }) => theme.colors.yellowChampain};
 `
 
 const Testimonial = () => (

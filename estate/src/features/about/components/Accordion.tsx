@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { Accordion as MuiAccordion } from '@mui/material'
-import AccordionSummary from '@mui/material/AccordionSummary'
+import { Accordion as MuiAccordion, AccordionSummary } from '@mui/material'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import styled from 'styled-components/macro'

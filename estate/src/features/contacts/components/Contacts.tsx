@@ -16,7 +16,7 @@ const Title = styled.h1`
   font-weight: 500;
   font-size: 28px;
   line-height: 34px;
-  color: ${({ theme }) => theme.colors.darkBlack};
+  color: ${({ theme }) => theme.colors.secondary};
 `
 
 const Contacts = () => {

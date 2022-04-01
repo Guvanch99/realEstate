@@ -1,9 +1,9 @@
 import { FC, memo } from 'react'
 import styled, { keyframes } from 'styled-components/macro'
-import {flex} from "../styles/mxins";
+import { flex } from '../styles/mxins'
 
-type TProps={
-  widthHeight?:number
+type TProps = {
+  widthHeight?: number
 }
 
 const ratio = 0.75
@@ -18,7 +18,7 @@ const Spin = keyframes`
 `
 // 75%percent
 const LoaderStyled = styled.section<TProps>`
-  width:${({ widthHeight }) => widthHeight}px;
+  width: ${({ widthHeight }) => widthHeight}px;
   height: ${({ widthHeight }) => widthHeight}px;
   border-radius: 50%;
   display: inline-block;
@@ -35,10 +35,10 @@ const LoaderStyled = styled.section<TProps>`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width:${({ widthHeight }) => widthHeight && widthHeight * ratio}px;
+    width: ${({ widthHeight }) => widthHeight && widthHeight * ratio}px;
     height: ${({ widthHeight }) => widthHeight && widthHeight * ratio}px;
     border-radius: 50%;
-    background: ${({ theme }) => theme.colors.white};
+    background: ${({ theme }) => theme.colors.primary};
   }
 `
 
@@ -49,9 +49,9 @@ const SpinnerContainerStyled = styled.article`
 
 `
 
-const Spinner:FC<TProps> = ({ widthHeight = 32 }) => (
+const Spinner: FC<TProps> = ({ widthHeight = 32 }) => (
   <SpinnerContainerStyled>
-    <LoaderStyled widthHeight={widthHeight} />
+    <LoaderStyled widthHeight={widthHeight}/>
   </SpinnerContainerStyled>
 )
 

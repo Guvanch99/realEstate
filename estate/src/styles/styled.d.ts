@@ -3,6 +3,8 @@ import 'styled-components/macro'
 declare module 'styled-components/macro' {
   export interface DefaultTheme {
     colors: {
+      yellowChampain: string;
+      white: string
       secondary: string
       green: string
       blue100: string
@@ -17,7 +19,7 @@ declare module 'styled-components/macro' {
       grey600a6: string
       lightBlue: string,
       grey200: string
-      white: string
+      primary: string
       darkBlack: string
       grey600: string
       red300: string
@@ -29,7 +31,7 @@ declare module 'styled-components/macro' {
       green300: string
       green800: string
       red: string
-      red200:string
+      red200: string
       orange: string
       shadow100: string
       shadow200: string

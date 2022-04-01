@@ -15,7 +15,7 @@ const TitleStyled = styled.h1`
   font-size: 20px;
   font-weight: 400;
   text-align: center;
-  color: ${({ theme }) => theme.colors.darkBlack};
+  color: ${({ theme }) => theme.colors.secondary};
 `
 
 const renderActiveShape = (props: any) => {

@@ -34,7 +34,7 @@ const TitleStyled = styled.h1`
   font-weight: 700;
   font-size: 28px;
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.darkBlack};
+  color: ${({ theme }) => theme.colors.secondary};
 `
 
 const ContentStyled = styled.div`

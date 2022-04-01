@@ -24,6 +24,7 @@ const LabelStyled = styled.h1`
   text-align: center;
   line-height: 18px;
   border-bottom: 3px solid ${({ theme }) => theme.colors.yellow500};
+  color: ${({ theme }) => theme.colors.secondary};
 `
 
 const ImageContainerStyled = styled.div`
@@ -37,11 +38,24 @@ const ImgStyled = styled.img`
   object-fit: cover;
   border-radius: 20px;
   transition: all 1s ease-in;
+  cursor: pointer;
+
+  :hover {
+    transform: scale(1.1) rotate(3deg) translate(10px, 20px);
+    transition: all .4s ease-in-out;
+  }
+
 `
 
 const TextStyled = styled.div`
   ${flex({ justify: 'center', align: 'center' })};
   height: 100%;
+  color: ${({ theme }) => theme.colors.secondary};
+
+  :hover {
+    transform: scale(1.2);
+    transition: all .4s ease-in-out;
+  }
 `
 
 const Testimonials = () => {

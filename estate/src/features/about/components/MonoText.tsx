@@ -20,6 +20,7 @@ const LabelStyled = styled.h1`
   font-weight: 700;
   text-align: center;
   line-height: 18px;
+  color: ${({ theme }) => theme.colors.secondary};
   border-bottom: 3px solid ${({ theme }) => theme.colors.yellow500};
 `
 
@@ -29,7 +30,7 @@ const TextStyled = styled.p`
   font-weight: 400;
   text-align: center;
   line-height: 18px;
-  color: ${({ theme }) => theme.colors.darkBlack};
+  color: ${({ theme }) => theme.colors.secondary};
 `
 
 const ReadMoreContainer = styled.div`
@@ -38,7 +39,7 @@ const ReadMoreContainer = styled.div`
 
 const ReadMoreText = styled.div`
   margin-top: 8px;
-  color: ${({ theme }) => theme.colors.grey600};
+  color: ${({ theme }) => theme.colors.yellow500};
 `
 
 const MonoText = () => {

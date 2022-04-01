@@ -4,10 +4,12 @@ import { InputAdornment, TextField } from '@mui/material'
 import { RegisterOptions } from 'react-hook-form/dist/types/validator'
 import { TextFieldProps } from '@mui/material/TextField/TextField'
 import styled, { useTheme } from 'styled-components/macro'
+import { fontFamily } from '../styles/mxins'
 
 export const CustomTextField = styled(TextField)`
   && {
     margin: 0;
+    background: ${({ theme }) => theme.colors.white};
   }
 
   && .css-1gywuxd-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
@@ -23,6 +25,7 @@ export const CustomTextField = styled(TextField)`
     height: 20px;
 
     ::placeholder {
+      ${fontFamily('Inter')};
       color: ${({ theme }) => theme.colors.darkBlack};
       font-weight: 500;
       font-size: 14px;
@@ -31,6 +34,7 @@ export const CustomTextField = styled(TextField)`
   }
 
   & .MuiFormHelperText-root {
+    ${fontFamily('Inter')};
     color: ${({ theme }) => theme.colors.red};
     font-size: 14px;
     line-height: 24px;

@@ -139,3 +139,5 @@ export const dataChart: TChart[] = [
   { name: 'Four Room', value: 20 },
   { name: 'Five Room', value: 20 }
 ]
+
+export const LOTTIE_PATH = 'https://assets.codepen.io/3685267/cute-cat-works.json'

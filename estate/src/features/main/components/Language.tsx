@@ -13,13 +13,15 @@ const Container = styled.div`
 const IconStyled = styled.label`
   ${flex({ justify: 'center', align: 'center' })};
   ${fontFamily('Inter')};
+  color: ${({ theme }) => theme.colors.secondary};
 `
 
 const SelectStyled = styled.select`
   border: none;
   outline: none;
   font-size: 16px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
 `
 
 const OptionStyled = styled.option`

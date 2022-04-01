@@ -1,5 +1,5 @@
 import { FormControlLabel, FormGroup, styled, Switch as MuiSwitch } from '@mui/material'
-import { useHeaderContext } from '../state/useHeader'
+import { useThemeProvider } from '../../../state/useTheme'
 
 const MaterialUISwitch = styled(MuiSwitch)(({ theme }) => ({
   width: 70,
@@ -51,7 +51,7 @@ const MaterialUISwitch = styled(MuiSwitch)(({ theme }) => ({
 }))
 
 const Switch = () => {
-  const { theme, toggleTheme } = useHeaderContext()
+  const { theme, toggleTheme } = useThemeProvider()
   return (
     <FormGroup>
       <FormControlLabel

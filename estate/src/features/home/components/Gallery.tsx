@@ -17,7 +17,7 @@ const SelectStyled = styled.ul`
 
 const Option = styled.li<{ selected: boolean }>`
   margin: 10px 16px;
-  color: ${({ theme }) => theme.colors.darkBlack};
+  color: ${({ theme }) => theme.colors.secondary};
   line-height: 24px;
   font-size: 18px;
   font-weight: 400;
@@ -43,7 +43,7 @@ const GalleryContainerStyled = styled.div`
 const ImageStyled = styled.img`
   width: 400px;
   height: 400px;
-  object-fit: contain;
+  object-fit: cover;
 
   :hover {
     transform: scale(1.1) rotate(3deg) translate(10px, 20px);

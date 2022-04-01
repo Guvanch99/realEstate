@@ -5,13 +5,13 @@ import { flex } from '../../../styles/mxins'
 const FooterStyled = styled.footer`
   margin-top: 24px;
   ${flex({ justify: 'center', align: 'center' })}
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.darkBlack};
   height: 80px;
 `
 
 const TextStyled = styled.h2`
   padding: 25px 16px;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.secondary};
 `
 
 const Footer = () => {

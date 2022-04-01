@@ -1,6 +1,6 @@
 import * as React from 'react'
-import styled from 'styled-components/macro'
 import { FC, useEffect, useState } from 'react'
+import styled from 'styled-components/macro'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 
@@ -54,7 +54,7 @@ const IconForward = styled(ArrowForwardIosIcon)`
   && {
     width: 50px;
     height: 50px;
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.primary};
     transition: all .4s ease-in;
 
     :hover {
@@ -67,7 +67,7 @@ const IconBack = styled(ArrowBackIosNewIcon)`
   && {
     width: 50px;
     height: 50px;
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.primary};
     transition: all .4s ease-in;
 
     :hover {

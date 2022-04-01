@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import LogoImg from '../assets/logo.png'
+import LogoImg from '../assets/logo.svg'
 import { flex } from '../../../styles/mxins'
 import Switch from './Switch'
 import Language from './Language'
@@ -26,7 +26,7 @@ export const CustomNavlink = styled(NavLink)`
   }
 
   &[class*="active"] {
-    color: ${({ theme }) => theme.colors.blue500};
+    color: ${({ theme }) => theme.colors.yellowChampain};
   }
 `
 
@@ -49,10 +49,10 @@ const Header = () => {
       <Switch/>
       <Language/>
       <AuthContainer>
-        <CustomNavlink to="sign-in">
+        <CustomNavlink to="login">
           {t('auth.signIn')}
         </CustomNavlink>
-        <CustomNavlink to="sign-up">
+        <CustomNavlink to="register">
           {t('auth.signUp')}
         </CustomNavlink>
       </AuthContainer>
