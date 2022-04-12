@@ -3,13 +3,10 @@ import { FC, useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import { flex } from '../styles/mxins'
 
-import { flex } from '../../../styles/mxins'
-import { images } from '../data'
-
-const SliderStyled = styled.figure`
-  ${flex({ justify: 'center', align: 'center' })};
-  height: 530px;
+const SliderStyled = styled.figure<{ small?: boolean }>`
+  height: ${({ small }) => (small ? 330 : 550)}px;
   padding-bottom: 32px;
   margin: 16px 32px;
   max-width: 100%;
@@ -23,37 +20,38 @@ const ImageStyled = styled.img`
   max-height: 100%;
   border-radius: 20px;
   transition: all 1s ease-in;
+  object-fit: cover;
 
   &:hover {
     transform: scale(1.05);
   }
 `
 
-const BaseFigCaption = styled.figcaption`
+const BaseFigCaption = styled.figcaption<{ small?: boolean }>`
   ${flex({ justify: 'center', align: 'center' })};
   padding: 8px;
   position: absolute;
   background: ${({ theme }) => theme.colors.secondary};
   border-radius: 50%;
-  top: 40%;
+  top: ${({ small }) => (small ? 50 : 40)}%;
   cursor: pointer;
   @media (max-width: 500px) {
     display: none;
   }
 `
 
-const FigureCaptionLeft = styled(BaseFigCaption)`
-  left: 5%;
+const FigureCaptionLeft = styled(BaseFigCaption)<{ small?: boolean }>`
+  left: ${({ small }) => (small ? 24 : 5)}%;
 
 `
-const FigureCaptionRight = styled(BaseFigCaption)`
-  right: 5%;
+const FigureCaptionRight = styled(BaseFigCaption)<{ small?: boolean }>`
+  right: ${({ small }) => (small ? 48 : 5)}%;
 `
 
-const IconForward = styled(ArrowForwardIosIcon)`
+const IconForward = styled(ArrowForwardIosIcon)<{ small?: boolean }>`
   && {
-    width: 50px;
-    height: 50px;
+    width: ${({ small }) => (small ? 35 : 50)}px;
+    height: ${({ small }) => (small ? 35 : 50)}px;
     color: ${({ theme }) => theme.colors.primary};
     transition: all .4s ease-in;
 
@@ -63,10 +61,10 @@ const IconForward = styled(ArrowForwardIosIcon)`
 
   }
 `
-const IconBack = styled(ArrowBackIosNewIcon)`
+const IconBack = styled(ArrowBackIosNewIcon)<{ small?: boolean }>`
   && {
-    width: 50px;
-    height: 50px;
+    width: ${({ small }) => (small ? 35 : 50)}px;
+    height: ${({ small }) => (small ? 35 : 50)}px;
     color: ${({ theme }) => theme.colors.primary};
     transition: all .4s ease-in;
 
@@ -76,13 +74,20 @@ const IconBack = styled(ArrowBackIosNewIcon)`
   }
 `
 
-const ImageSlider: FC = () => {
+type TProps = {
+  images: {
+    url: string
+    text: string | number
+  }[]
+  small?: boolean
+}
+
+const ImageSlider: FC<TProps> = ({ images, small }) => {
   const [current, setCurrent] = useState<number>(0)
   const imageLength: number = images.length
 
   useEffect(() => {
     const imageIndex = current === imageLength - 1 ? 0 : current
-    console.log(imageIndex)
     const timer = setTimeout(() => setCurrent((prev) => {
       // eslint-disable-next-line no-multi-assign
       const next = prev += 1
@@ -98,7 +103,7 @@ const ImageSlider: FC = () => {
     setCurrent(current === 0 ? imageLength - 1 : current - 1)
 
   return (
-    <SliderStyled>
+    <SliderStyled small={small}>
       {images.map(
         ({ url, text }, index) =>
           index === current && (
@@ -106,15 +111,15 @@ const ImageSlider: FC = () => {
               key={text}
               className="slider__image"
               src={url}
-              alt={text}
+              alt={text.toString()}
             />
           )
       )}
-      <FigureCaptionLeft>
-        <IconBack onClick={prevImage}/>
+      <FigureCaptionLeft small={small}>
+        <IconBack small={small} onClick={prevImage}/>
       </FigureCaptionLeft>
-      <FigureCaptionRight>
-        <IconForward onClick={nextImage}/>
+      <FigureCaptionRight small={small}>
+        <IconForward small={small} onClick={nextImage}/>
       </FigureCaptionRight>
     </SliderStyled>
   )

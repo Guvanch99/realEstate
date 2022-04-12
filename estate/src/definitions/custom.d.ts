@@ -4,7 +4,9 @@ declare module '*.svg'
 
 declare module '*.png'
 
-declare module '*.jpeg';
+declare module '*.jpeg'
+
+declare module '*.webp'
 
 declare module '*.module.scss' {
   const classes: any

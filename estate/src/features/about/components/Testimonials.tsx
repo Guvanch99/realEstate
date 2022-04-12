@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import ImgFirst from '../assets/img1.jpeg'
 import ImgSecond from '../assets/img2.jpeg'
 import ImgThird from '../assets/img3.jpeg'
-import ImgFourth from '../assets/img4.jpeg'
+import ImgFourth from '../assets/img4.webp'
 import { flex } from '../../../styles/mxins'
 
 const Wrapper = styled.div`
