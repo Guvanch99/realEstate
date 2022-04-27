@@ -7,7 +7,7 @@
       "price": "100",
       "guest": 1,
       "location": "Limoza 27/2 , 81",
-      "description": "description.one.description",
+      "description": "desc.one",
       "status": "AVAILABLE",
       "images": [
         "https://photos2.theblueground.com/pg19516-m-4bdf7397-3b6d-8711-1e66-bb8cdfeac96b.jpg",
@@ -23,7 +23,7 @@
       "price": "200",
       "guest": 2,
       "location": "Limoza 27/2 , 81",
-      "description": "description.one.description",
+      "description": "desc.one",
       "status": "AVAILABLE",
       "images": [
         "https://photos2.theblueground.com/pg19516-m-4bdf7397-3b6d-8711-1e66-bb8cdfeac96b.jpg",
@@ -39,7 +39,7 @@
       "price": "300",
       "guest": 2,
       "location": "Limoza 27/2 , 81",
-      "description": "description.three.description",
+      "description": "desc.one",
       "status": "AVAILABLE",
       "images": [
         "https://f1a3d4fea3a9a877e732-356deb4d9644d2835b7712e712dbd1ea.ssl.cf2.rackcdn.com/303899/7126798.v.0ec960631e00e58a6c0e097ac144704b.jpg",
@@ -55,7 +55,7 @@
       "price": "250",
       "guest": 3,
       "location": "Limoza 27/2 , 82",
-      "description": "description.one.description",
+      "description": "desc.one",
       "status": "AVAILABLE",
       "images": [
         "https://www.thinkwood.com/wp-content/uploads/2021/02/Rent-the-Backyard-by-John-Arbuckle-3.jpg",
@@ -71,7 +71,7 @@
       "price": "350",
       "guest": 3,
       "location": "Limoza 27/2 , 84",
-      "description": "description.five.description",
+      "description": "desc.one",
       "status": "AVAILABLE",
       "images": [
         "https://photos2.theblueground.com/pg19516-m-4bdf7397-3b6d-8711-1e66-bb8cdfeac96b.jpg",
@@ -87,7 +87,7 @@
       "price": "400",
       "guest": 4,
       "location": "Limoza 27/2 , 86",
-      "description": "",
+      "description": "desc.one",
       "status": "AVAILABLE",
       "images": [
         "https://lid.zoocdn.com/u/2400/1800/cfad7203eef0c951d4a580d8451a47381342fe2f.jpg",
@@ -103,7 +103,7 @@
       "price": "450",
       "guest": 4,
       "location": "Limoza 27/2 , 88",
-      "description": "description.one.description",
+      "description": "desc.one",
       "status": "AVAILABLE",
       "images": [
         "https://media.rightmove.co.uk/dir/crop/10:9-16:9/227k/226406/79784523/226406_KNIGH_000226_IMG_00_0000_max_476x317.jpeg",
@@ -119,7 +119,7 @@
       "price": "475",
       "guest": 5,
       "location": "Limoza 27/2 , 89",
-      "description": "description.one.description",
+      "description": "desc.one",
       "status": "AVAILABLE",
       "images": [
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSIvnDBlnnS9FSlmNa9vlGExS6PisrnewrTw&usqp=CAU",
@@ -135,7 +135,7 @@
       "price": "400",
       "guest": 6,
       "location": "Limoza 27/2 , 92",
-      "description": "description.one.description",
+      "description": "desc.one",
       "status": "AVAILABLE",
       "images": [
         "https://photos2.theblueground.com/pg19516-m-4bdf7397-3b6d-8711-1e66-bb8cdfeac96b.jpg",
@@ -151,7 +151,7 @@
       "guest": 5,
       "price": "500",
       "location": "Limoza 27/2 , 98",
-      "description": "description.one.description",
+      "description": "desc.one",
       "status": "AVAILABLE",
       "images": [
         "https://media.architecturaldigest.com/photos/57190ffc9ed5af6a73fbdf59/master/w_320%2Cc_limit/david-bowie-mustique-rent-01.jpg",

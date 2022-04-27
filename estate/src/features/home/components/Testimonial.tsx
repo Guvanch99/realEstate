@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import { useTranslation } from 'react-i18next'
 import { fontFamily } from '../../../styles/mxins'
 
 const Container = styled.div`
@@ -31,16 +32,18 @@ const FooterStyled = styled.p`
   color: ${({ theme }) => theme.colors.yellowChampain};
 `
 
-const Testimonial = () => (
-  <Container>
-    <HeaderStyled>lorem ipsum</HeaderStyled>
-    <BodyStyled>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis,
-      dolorem fuga minus optio quae ullam voluptatem. Assumenda delectus, mollitia!
-    </BodyStyled>
-    <FooterStyled>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, ea.
-    </FooterStyled>
-  </Container>
-)
+const Testimonial = () => {
+  const { t } = useTranslation('translation')
+  return (
+    <Container>
+      <HeaderStyled>{t('motto')}</HeaderStyled>
+      <BodyStyled>
+        {t('motto1')}
+      </BodyStyled>
+      <FooterStyled>
+        {t('motto2')}
+      </FooterStyled>
+    </Container>
+  )
+}
 export default Testimonial

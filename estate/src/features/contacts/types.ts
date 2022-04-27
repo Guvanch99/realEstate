@@ -5,6 +5,7 @@ export type TFormData = {
 }
 
 export type TTestimonials = {
-  title: 'ADDRESS' | 'PHONE' | 'EMAIL'
+  title: string
   content: string
+  type: 'ADDRESS' | 'PHONE' | 'EMAIL'
 }

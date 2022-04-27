@@ -1,5 +1,6 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import styled, { css } from 'styled-components/macro'
+import { useTranslation } from 'react-i18next'
 import { useApartmentQuery } from '../../list/queries'
 import Loader from '../../../../components/Loader'
 import ImageSlider from '../../../../components/ImageSlider'
@@ -22,6 +23,17 @@ const TitleStyled = styled.h1`
   color: ${({ theme }) => theme.colors.secondary};
 `
 
+const NavigationBackStyled = styled.div`
+  text-align: center;
+  padding: 10px;
+  color: ${({ theme }) => theme.colors.secondary};
+  background: ${({ theme }) => theme.colors.blue200};
+  cursor: pointer;
+  width: 100px;
+  margin: 40px auto;
+  border-radius: 10px;
+`
+
 const ContainerStyled = styled.div`
   ${flex({ justify: 'space-evenly', align: 'center' })};
   width: 100%;
@@ -41,6 +53,7 @@ const TextContentStyled = styled.div<{ margin?: boolean }>`
   font-size: 18px;
   line-height: 20px;
   color: ${({ theme }) => theme.colors.secondary};
+  max-width: 300px;
   ${({ margin }) => margin && css`
     margin: 20px 0;
   `}
@@ -58,7 +71,7 @@ const ButtonBook = styled(BaseButton)`
     padding: 10px 20px;
     background: ${({ theme }) => theme.colors.orange};
     color: ${({ theme }) => theme.colors.white};
-    width: 100px;
+    width: 150px;
     justify-self: center;
     align-self: center;
 
@@ -69,6 +82,8 @@ const ButtonBook = styled(BaseButton)`
 `
 
 const DetailedApartment = () => {
+  const navigate = useNavigate()
+  const { t } = useTranslation('translation')
   const { id } = useParams()
   const { data: apartment, isIdle, isLoading } = useApartmentQuery(id)
   const { setModal } = useApartmentContext()
@@ -85,7 +100,8 @@ const DetailedApartment = () => {
 
   return (
     <Wrapper>
-      <TitleStyled>Detailed Info</TitleStyled>
+      <NavigationBackStyled onClick={() => navigate(-1)}>Go Back</NavigationBackStyled>
+      <TitleStyled>{t('detailedInfo')}</TitleStyled>
       <ContainerStyled>
         <ImageContainer>
           <ImageSlider
@@ -94,44 +110,46 @@ const DetailedApartment = () => {
         </ImageContainer>
         <ContentStyled>
           <TextContentStyled>
-            Features:
+            {t('features')}
             <TextStyled>
               {room}
               {' '}
-              room -
+              {t('room')}
+              {' '}
+              -
               {square}
               m2
             </TextStyled>
           </TextContentStyled>
           <TextContentStyled margin>
-            Guests:
+            {t('guests')}
             <TextStyled>
               {guest}
             </TextStyled>
           </TextContentStyled>
           <TextContentStyled margin>
-            Price:
+            {t('price')}
             <TextStyled>
               {price}
               {' '}
-              rub/night
+              {t('priceFraction')}
             </TextStyled>
           </TextContentStyled>
           <TextContentStyled>
-            Location:
+            {t('location')}
             <TextStyled>
               {location}
             </TextStyled>
           </TextContentStyled>
           <TextContentStyled margin>
-            Description:
+            {t('description')}
             <TextStyled>
-              {description}
+              {t(description)}
             </TextStyled>
           </TextContentStyled>
         </ContentStyled>
       </ContainerStyled>
-      <ButtonBook onClick={() => setModal(true)}>Book</ButtonBook>
+      <ButtonBook onClick={() => setModal(true)}>{t('book')}</ButtonBook>
       <Modal/>
     </Wrapper>
   )

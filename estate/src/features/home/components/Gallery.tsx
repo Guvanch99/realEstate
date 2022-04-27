@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/macro'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { gallery, selectOptions } from '../data'
 import { flex } from '../../../styles/mxins'
 import { TOption } from '../type'
@@ -53,17 +54,17 @@ const ImageStyled = styled.img`
 
 const Gallery = () => {
   const [optionSelect, setOptionSelect] = useState<TOption>('All')
-
+  const { t } = useTranslation('translation')
   return (
     <>
-      <TextStyled>Gallery</TextStyled>
+      <TextStyled>{t('gallery')}</TextStyled>
       <SelectStyled>
-        {selectOptions.map((option: TOption) => (
+        {selectOptions.map(({ value, label }) => (
           <Option
-            selected={optionSelect === option}
-            value={option}
-            onClick={() => setOptionSelect(option as TOption)}>
-            {option}
+            selected={optionSelect === value}
+            value={value}
+            onClick={() => setOptionSelect(value as TOption)}>
+            {t(label)}
           </Option>
         ))}
       </SelectStyled>

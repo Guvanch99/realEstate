@@ -2,6 +2,7 @@ import styled from 'styled-components/macro'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import PhoneIcon from '@mui/icons-material/Phone'
 import EmailIcon from '@mui/icons-material/Email'
+import { useTranslation } from 'react-i18next'
 import { Testimonials } from '../data'
 import { flex } from '../../../styles/mxins'
 
@@ -63,16 +64,17 @@ const GetInTouch = () => {
     PHONE: <IconStyled><PhoneIcon/></IconStyled>,
     EMAIL: <IconStyled><EmailIcon/></IconStyled>
   }
+  const { t } = useTranslation('translation')
   return (
     <Wrapper>
       {
-        Testimonials.map(({ title, content }) => (
+        Testimonials.map(({ title, content, type }) => (
           <ContainerStyled>
             <ContentStyled>
-              {icons[title]}
-              <TitleStyled>{title}</TitleStyled>
+              {icons[type]}
+              <TitleStyled>{t(title)}</TitleStyled>
             </ContentStyled>
-            <TextStyled>{content}</TextStyled>
+            <TextStyled>{t(content)}</TextStyled>
           </ContainerStyled>
         ))
       }

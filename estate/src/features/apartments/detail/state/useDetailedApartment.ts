@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 const useDetailedApartment = () => {
   const [isModal, setModal] = useState<boolean>(false)
   const [isModalSuccess, setModalSuccess] = useState(false)
-  const handleClose = () => setModal(false)
   const navigate = useNavigate()
   const handleSuccessClose = () => {
     setModalSuccess(false)
@@ -16,8 +15,7 @@ const useDetailedApartment = () => {
     setModal,
     isModalSuccess,
     setModalSuccess,
-    handleSuccessClose,
-    handleClose
+    handleSuccessClose
   }
 }
 

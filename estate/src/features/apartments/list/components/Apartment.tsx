@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled, { css } from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { TApartments } from '../types'
 import { flex, fontFamily } from '../../../../styles/mxins'
 
@@ -56,43 +57,47 @@ const Apartment: FC<TApartments> = ({
   square,
   images,
   guest
-}) => (
-  <CardStyled to={`/apartment/${id}`}>
-    <ImageStyled src={images[0]} alt={room}/>
-    <ContentStyled>
-      <TextContentStyled>
-        Features:
-        <TextStyled>
-          {room}
-          {' '}
-          room -
-          {square}
-          m2
-        </TextStyled>
-      </TextContentStyled>
-      <TextContentStyled>
-        Guests:
-        <TextStyled>
-          {guest}
-        </TextStyled>
-      </TextContentStyled>
-      <TextContentStyled margin>
-        Price:
-        <TextStyled>
-          {price}
-          {' '}
-          rub/night
-        </TextStyled>
-      </TextContentStyled>
-      <TextContentStyled>
-        Location:
-        <TextStyled>
-          {location}
-        </TextStyled>
-      </TextContentStyled>
-    </ContentStyled>
-
-  </CardStyled>
-)
+}) => {
+  const { t } = useTranslation('translation')
+  return (
+    <CardStyled to={`/apartment/${id}`}>
+      <ImageStyled src={images[0]} alt={room}/>
+      <ContentStyled>
+        <TextContentStyled>
+          {t('features')}
+          <TextStyled>
+            {room}
+            {' '}
+            {t('room')}
+            {' '}
+            -
+            {square}
+            m2
+          </TextStyled>
+        </TextContentStyled>
+        <TextContentStyled margin>
+          {t('guests')}
+          <TextStyled>
+            {guest}
+          </TextStyled>
+        </TextContentStyled>
+        <TextContentStyled margin>
+          {t('price')}
+          <TextStyled>
+            {price}
+            {' '}
+            {t('priceFraction')}
+          </TextStyled>
+        </TextContentStyled>
+        <TextContentStyled>
+          {t('location')}
+          <TextStyled>
+            {location}
+          </TextStyled>
+        </TextContentStyled>
+      </ContentStyled>
+    </CardStyled>
+  )
+}
 
 export default Apartment

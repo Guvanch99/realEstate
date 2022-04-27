@@ -1,10 +1,9 @@
-import { TOptions } from 'i18next'
 import FirstImage from './assets/first.jpeg'
 import SecondImage from './assets/second.jpeg'
 import ThirdImage from './assets/third.jpeg'
 import FourthImage from './assets/fourth.jpeg'
 import FifthImage from './assets/fifth.jpeg'
-import { TChart, TGallery, TServices } from './type'
+import { TChart, TGallery } from './type'
 
 export const images = [
   {
@@ -29,7 +28,32 @@ export const images = [
   }
 ]
 
-export const selectOptions: TOptions = ['All', 'One Room', 'Two Room', 'Three Room', 'Four Room', 'Five Room']
+export const selectOptions = [
+  {
+    label: 'galleryRoom.all',
+    value: 'All'
+  },
+  {
+    label: 'galleryRoom.1',
+    value: 'One Room'
+  },
+  {
+    label: 'galleryRoom.2',
+    value: 'Two Room'
+  },
+  {
+    label: 'galleryRoom.3',
+    value: 'Three Room'
+  },
+  {
+    label: 'galleryRoom.4',
+    value: 'Four Room'
+  },
+  {
+    label: 'galleryRoom.5',
+    value: 'Five Room'
+  }
+]
 
 export const gallery: TGallery[] = [
   {
@@ -91,53 +115,12 @@ export const gallery: TGallery[] = [
 
 ]
 
-export const ServicesData: TServices[] = [
-  {
-    header: 'lorem ipsum',
-    icon: 'statistics',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis,',
-    footer: 'Latest Report',
-    link: 'report'
-  },
-  {
-    header: 'lorem ipsum',
-    icon: 'transport',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis,',
-    footer: 'Help',
-    link: 'help'
-  }, {
-    header: 'lorem ipsum',
-    icon: 'signIn',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis,',
-    footer: 'Sign up',
-    link: 'sign-up'
-  }, {
-    header: 'lorem ipsum',
-    icon: 'news',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis,',
-    footer: 'Follow News',
-    link: 'news'
-  }, {
-    header: 'lorem ipsum',
-    icon: 'download',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis,',
-    footer: 'Download App',
-    link: 'download'
-  }, {
-    header: 'lorem ipsum',
-    icon: 'video',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis,',
-    footer: 'Watch video',
-    link: 'watch'
-  }
-]
-
 export const dataChart: TChart[] = [
-  { name: 'One Room', value: 20 },
-  { name: 'Two Room', value: 10 },
-  { name: 'Three Room', value: 40 },
-  { name: 'Four Room', value: 20 },
-  { name: 'Five Room', value: 20 }
+  { name: 'galleryRoom.1', value: 20 },
+  { name: 'galleryRoom.2', value: 10 },
+  { name: 'galleryRoom.3', value: 40 },
+  { name: 'galleryRoom.4', value: 20 },
+  { name: 'galleryRoom.5', value: 20 }
 ]
 
 export const LOTTIE_PATH = 'https://assets.codepen.io/3685267/cute-cat-works.json'

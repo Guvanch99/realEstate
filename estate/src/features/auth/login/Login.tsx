@@ -1,12 +1,15 @@
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components/macro'
 import { FormControlLabel as Label } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { TFormData } from './type'
 import { flex, fontFamily } from '../../../styles/mxins'
 import Button, { BaseButton } from '../../../components/Button'
 import CustomInput from '../../../components/CustomInput'
 import { emailValidation, minLengthRule, passwordValidation, requiredRule } from '../../../utils/formUtils'
 import Card, { CardStyled } from '../../../components/Card'
+import { useLoginMutation } from './querie'
 
 const LoginContainerStyled = styled.section`
   ${flex({ justify: 'center', align: 'center' })};
@@ -58,13 +61,15 @@ const FormStyled = styled.form`
 `
 
 const Login = () => {
+  const { t } = useTranslation('translation')
   const { handleSubmit, control, setError } = useForm<TFormData>({
     defaultValues: {
       email: '',
       password: ''
     }
   })
-  // const { mutate, isError, error } = useLoginMutation()
+  const navigate = useNavigate()
+  const { mutate, isError, error } = useLoginMutation()
 
   // if (isError) setError('email', { message: error?.message })
 
@@ -72,11 +77,11 @@ const Login = () => {
     <LoginContainerStyled>
       <Card>
         <ArticleStyled>
-          <TitleStyled>Login</TitleStyled>
+          <TitleStyled>{t('login')}</TitleStyled>
         </ArticleStyled>
         <FormStyled onSubmit={handleSubmit((data) => {
           console.log()
-          // mutate(data)
+          mutate(data)
         })}>
           <Label
             control={(
@@ -84,14 +89,14 @@ const Login = () => {
                 size="small"
                 name="email"
                 control={control}
-                placeholder="Email"
+                placeholder={t('contactForm.email')}
                 rules={{
-                  required: requiredRule('Please fill in all required fields.'),
+                  required: requiredRule(t('require')),
                   validate: emailValidation
                 }}
               />
             )}
-            label="Email"
+            label={t('contactForm.email') as string}
             labelPlacement="top"/>
           <Label
             control={(
@@ -100,17 +105,17 @@ const Login = () => {
                 size="small"
                 name="password"
                 control={control}
-                placeholder="Password"
+                placeholder={t('password')}
                 rules={{
-                  required: requiredRule('Please fill in all required fields.'),
+                  required: requiredRule(t('require')),
                   minLength: minLengthRule(8),
                   validate: passwordValidation
                 }}
               />
             )}
-            label="Password"
+            label={t('password') as string}
             labelPlacement="top"/>
-          <Button text="Log in" type="submit"/>
+          <Button text={t('login')} type="submit"/>
         </FormStyled>
       </Card>
     </LoginContainerStyled>

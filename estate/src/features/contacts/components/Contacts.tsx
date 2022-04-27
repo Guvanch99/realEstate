@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import { useTranslation } from 'react-i18next'
 import { flex } from '../../../styles/mxins'
 import FormComment from './FormComment'
 import GetInTouch from './GetInTouch'
@@ -21,9 +22,10 @@ const Title = styled.h1`
 
 const Contacts = () => {
   const { isSuccess } = useContact()
+  const { t } = useTranslation('translation')
   return (
     <Container>
-      <Title>Contact Us</Title>
+      <Title>{t('contactUs')}</Title>
       <FormComment/>
       <GetInTouch/>
     </Container>

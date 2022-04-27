@@ -9,11 +9,12 @@ import {
 import { DatePicker, LocalizationProvider } from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import styled from 'styled-components/macro'
-import { format } from 'date-fns'
+import { format, isAfter, isBefore } from 'date-fns'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { flex, fontFamily } from '../../../../styles/mxins'
-import { useApartmentContext } from '../state/useDetailedApartment'
 import { BaseButton } from '../../../../components/Button'
+import { useApartmentContext } from '../state/useDetailedApartment'
 
 const Dialog = styled.div`
   ${flex({ align: 'flex-start' })};
@@ -65,14 +66,6 @@ const DialogContentText = styled(MuiDialogContentText)`
   }
 `
 
-const FormStyled = styled.form`
-  display: grid;
-  align-items: start;
-  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
-  grid-gap: 16px;
-
-`
-
 const DialogActions = styled(MuiDialogActions)`
 {
   align-self: flex-end;
@@ -108,17 +101,48 @@ const ButtonActionStyled = styled(BaseButton)`
   }
 `
 
+const ErrorTextStyled = styled.p`
+  ${fontFamily('Inter')};
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: ${({ theme }) => theme.colors.red};
+  margin-top: 8px;
+`
+
 type TState = {
-  from?: string
-  to?: string
+  from: Date | string
+  to: Date | string
 }
 
 const Modal = () => {
-  const { isModal, handleClose } = useApartmentContext()
-  const [datePicked, setDatePicked] = useState<TState>()
+  const { t } = useTranslation('translation')
+  const { isModal, setModal } = useApartmentContext()
+  const [datePicked, setDatePicked] = useState<TState>({
+    from: new Date(),
+    to: new Date()
+  })
+  const [error, setError] = useState('')
 
   const onSubmit = () => {
-    console.log('s', datePicked)
+    if (isAfter(new Date(datePicked.from), new Date(datePicked.to))) {
+      setError('Date from can not be after than date to')
+    }
+    if (format(new Date(datePicked.from), 'yyyy-MM-dd') === format(new Date(datePicked.to), 'yyyy-MM-dd')) {
+      setError('Date from can not be same date to')
+    }
+
+    if (isBefore(new Date(datePicked.to), new Date(datePicked.from))) {
+      setError('Date to can not be before than date from')
+    }
+  }
+
+  const handleClose = () => {
+    setModal(false)
+    setDatePicked({
+      from: new Date(),
+      to: new Date()
+    })
   }
   return (
     <MuiDialog
@@ -133,18 +157,19 @@ const Modal = () => {
         x
       </IconContainerStyled>
       <DialogTitle id="alert-dialog-title">
-        Pick your date to book
+        {t('modalBook')}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              label="Date pick from"
+              label={t('dateBookFrom')}
               disablePast
               value={datePicked?.from}
               inputFormat="yyyy-MM-dd"
               views={['year', 'month', 'day']}
               onChange={(fromDate) => {
+                setError('')
                 setDatePicked({
                   ...datePicked,
                   from: fromDate ? format(new Date(fromDate), 'yyyy-MM-dd') : datePicked?.from
@@ -162,12 +187,13 @@ const Modal = () => {
           </LocalizationProvider>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              label="Date pick to"
+              label={t('dateBookTo')}
               value={datePicked?.to}
               inputFormat="yyyy-MM-dd"
               disablePast
               views={['year', 'month', 'day']}
               onChange={(toDate) => {
+                setError('')
                 setDatePicked({
                   ...datePicked,
                   to: toDate ? format(new Date(toDate), 'yyyy-MM-dd') : datePicked?.to
@@ -183,12 +209,13 @@ const Modal = () => {
               )}
             />
           </LocalizationProvider>
+          <ErrorTextStyled>{error}</ErrorTextStyled>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <ButtonCancelStyled onClick={handleClose}>Cancel</ButtonCancelStyled>
-        <ButtonActionStyled form="form" onClick={() => console.log('rin')} autoFocus>
-          Approve
+        <ButtonCancelStyled onClick={handleClose}>{t('cancel')}</ButtonCancelStyled>
+        <ButtonActionStyled form="form" onClick={onSubmit} autoFocus>
+          {t('approve')}
         </ButtonActionStyled>
       </DialogActions>
     </MuiDialog>

@@ -9,3 +9,11 @@ export type TApartments = {
   status: 'AVAILABLE' | 'BOOKED'
   images: string[]
 }
+
+export type TFormData = {
+  room: string | number,
+  capacity: string | number,
+  price: string | number,
+  minSize: string | number,
+  maxSize: string | number
+}

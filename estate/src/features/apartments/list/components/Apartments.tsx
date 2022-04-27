@@ -1,13 +1,17 @@
 import styled from 'styled-components/macro'
 import Spinner from '../../../../components/Loader'
-import { useApartmentsQuery } from '../queries'
-import { ApartmentsProvider } from '../state/useApartments'
+import { ApartmentsProvider, useApartmentsContext } from '../state/useApartments'
 import Apartment from './Apartment'
 import ApartmentFilters from './ApartmentFilters'
 import { flex } from '../../../../styles/mxins'
+import ApartmentSort from './ApartmentSort'
 
 const ContainerStyled = styled.div`
   ${flex({})};
+`
+
+const OperationStyled = styled.div`
+  position: fixed;
 `
 
 const ApartmentsStyled = styled.div`
@@ -17,18 +21,20 @@ const ApartmentsStyled = styled.div`
 `
 
 const Apartments = () => {
-  const { data, isIdle, isLoading } = useApartmentsQuery()
-  if (isIdle || isLoading || !data) {
+  const { apartments, isIdle, isLoading } = useApartmentsContext()
+  if (isIdle || isLoading || !apartments) {
     return <Spinner/>
   }
 
   return (
     <ContainerStyled>
-      <ApartmentFilters/>
+      <OperationStyled>
+        <ApartmentSort/>
+        <ApartmentFilters/>
+      </OperationStyled>
       <ApartmentsStyled>
-        {data.map((params) => <Apartment {...params}/>)}
+        {apartments.map((params) => <Apartment {...params}/>)}
       </ApartmentsStyled>
-
     </ContainerStyled>
   )
 }

@@ -1,14 +1,17 @@
-import styled from 'styled-components/macro'
 import { useForm } from 'react-hook-form'
+import styled from 'styled-components/macro'
 import { FormControlLabel as Label } from '@mui/material'
-import { flex, fontFamily } from '../../../styles/mxins'
-import Card, { CardStyled } from '../../../components/Card'
-import CustomInput from '../../../components/CustomInput'
-import { emailValidation, maxLengthRule, minLengthRule, passwordValidation, requiredRule } from '../../../utils/formUtils'
-import Button, { BaseButton } from '../../../components/Button'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { TFormData } from './type'
+import { flex, fontFamily } from '../../../styles/mxins'
+import Button, { BaseButton } from '../../../components/Button'
+import CustomInput from '../../../components/CustomInput'
+import { emailValidation, minLengthRule, passwordValidation, requiredRule } from '../../../utils/formUtils'
+import Card, { CardStyled } from '../../../components/Card'
+import { useRegisterMutation } from './querie'
 
-const RegistrationContainerStyled = styled.div`
+const LoginContainerStyled = styled.section`
   ${flex({ justify: 'center', align: 'center' })};
   flex-direction: column;
   height: 100%;
@@ -57,76 +60,43 @@ const FormStyled = styled.form`
   grid-row-gap: 16px;
 `
 
-const Register = () => {
+const Login = () => {
+  const { t } = useTranslation('translation')
   const { handleSubmit, control, setError } = useForm<TFormData>({
     defaultValues: {
-      firstName: '',
-      lastName: '',
       email: '',
       password: ''
     }
   })
-  // const { mutate, isError, error } = useLoginMutation()
+  const navigate = useNavigate()
+  const { mutate, isError, error } = useRegisterMutation()
 
-  // if (isError) setError('email', { message: error?.message })
+  if (isError) setError('email', { message: error?.message })
+
   return (
-    <RegistrationContainerStyled>
+    <LoginContainerStyled>
       <Card>
         <ArticleStyled>
-          <TitleStyled>Welcome to</TitleStyled>
+          <TitleStyled>{t('register')}</TitleStyled>
         </ArticleStyled>
-
         <FormStyled onSubmit={handleSubmit((data) => {
-          console.log()
-          // mutate(data)
+          console.log('data', data)
+          mutate(data)
         })}>
-          <Label
-            control={(
-              <CustomInput
-                size="small"
-                name="firstName"
-                control={control}
-                placeholder="firstName"
-                rules={{
-                  required: requiredRule('Please fill in all required fields.'),
-                  minLength: minLengthRule(4),
-                  maxLength: maxLengthRule(100)
-                }}
-              />
-            )}
-            label="Firstname"
-            labelPlacement="top"
-          />
-          <Label
-            control={(
-              <CustomInput
-                size="small"
-                name="lastName"
-                control={control}
-                placeholder="lastName"
-                rules={{
-                  required: requiredRule('Please fill in all required fields.'),
-                  minLength: minLengthRule(4),
-                  maxLength: maxLengthRule(100)
-                }}
-              />
-            )}
-            label="Lastname"
-            labelPlacement="top"/>
           <Label
             control={(
               <CustomInput
                 size="small"
                 name="email"
                 control={control}
-                placeholder="Email"
+                placeholder={t('contactForm.email')}
                 rules={{
-                  required: requiredRule('Please fill in all required fields.'),
+                  required: requiredRule(t('require')),
                   validate: emailValidation
                 }}
               />
             )}
-            label="Email"
+            label={t('contactForm.email') as string}
             labelPlacement="top"/>
           <Label
             control={(
@@ -135,22 +105,21 @@ const Register = () => {
                 size="small"
                 name="password"
                 control={control}
-                placeholder="Password"
+                placeholder={t('password')}
                 rules={{
-                  required: requiredRule('Please fill in all required fields.'),
+                  required: requiredRule(t('require')),
                   minLength: minLengthRule(8),
                   validate: passwordValidation
                 }}
               />
             )}
-            label="Password"
+            label={t('password') as string}
             labelPlacement="top"/>
-
-          <Button text="Register" type="submit"/>
+          <Button text={t('signUp')} type="submit"/>
         </FormStyled>
       </Card>
-    </RegistrationContainerStyled>
+    </LoginContainerStyled>
   )
 }
 
-export default Register
+export default Login

@@ -1,16 +1,20 @@
 import { useNavigate } from 'react-router-dom'
-
-import { DB } from '../../../core/axios'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { useMutation } from 'react-query'
 import { TFormData } from './type'
+import { auth } from '../../../firebase-config'
 
 enum QueryKeys {
   Login = 'Login'
 }
 
 async function register(formData: TFormData) {
+  console.log('re', formData)
   try {
-    const response = await DB.post<any>('/auth/login', { ...formData })
+    const { user } = await createUserWithEmailAndPassword(auth, formData.email, formData.password)
+    console.log('user', user)
   } catch (err: any) {
+    console.log('err', err.response)
     throw new Error('Something went wrong')
   }
 }
@@ -18,13 +22,12 @@ async function register(formData: TFormData) {
 export function useRegisterMutation() {
   const navigate = useNavigate()
   const key = QueryKeys.Login
-  // const { setAuthData } = useAuthContext()
-  //
-  // return useMutation<void, Error, TFormData>(
-  //   (formData) => useLogin(formData, setAuthData),
-  //   {
-  //     mutationKey: key,
-  //     onSuccess: () => navigate('/')
-  //   }
-  // )
+
+  return useMutation<void, Error, TFormData>(
+    (formData) => register(formData),
+    {
+      mutationKey: key
+      // onSuccess: () => navigate('/')
+    }
+  )
 }

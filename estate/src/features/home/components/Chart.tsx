@@ -1,6 +1,7 @@
 import { Pie, PieChart, ResponsiveContainer, Sector } from 'recharts'
 import { useState } from 'react'
 import styled from 'styled-components/macro'
+import { useTranslation } from 'react-i18next'
 import { dataChart } from '../data'
 
 const Wrapper = styled.div`
@@ -10,15 +11,13 @@ const Wrapper = styled.div`
 `
 
 const TitleStyled = styled.h1`
-  margin-top: 20px;
   line-height: 24px;
-  font-size: 20px;
-  font-weight: 400;
   text-align: center;
-  color: ${({ theme }) => theme.colors.secondary};
+  margin: 24px 0;
+  color: ${({ theme }) => theme.colors.yellow800};
 `
 
-const renderActiveShape = (props: any) => {
+const renderActiveShape = (props: any, t: any) => {
   const RADIAN = Math.PI / 180
   const {
     cx, cy, midAngle, innerRadius, outerRadius,
@@ -33,11 +32,11 @@ const renderActiveShape = (props: any) => {
   const ex = mx + (cos >= 0 ? 1 : -1) * 22
   const ey = my
   const textAnchor = cos >= 0 ? 'start' : 'end'
-
+  console.log('t', t)
   return (
     <g>
       <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload.name}
+        {t(payload.name)}
       </text>
       <Sector
         cx={cx}
@@ -61,25 +60,26 @@ const renderActiveShape = (props: any) => {
       <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none"/>
       <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`PV ${value}`}</text>
       <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
-        {`(Rate ${(percent * 100).toFixed(2)}%)`}
+        {`( ${t('rate')} ${(percent * 100).toFixed(2)}%)`}
       </text>
     </g>
   )
 }
 
 const Chart = () => {
+  const { t } = useTranslation('translation')
   const [active, setActive] = useState<number>(0)
   const onPieEnter = (_: any, index: number) => {
     setActive(index as number)
   }
   return (
     <Wrapper>
-      <TitleStyled>Popularity</TitleStyled>
+      <TitleStyled>{t('popularity')}</TitleStyled>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
             activeIndex={active}
-            activeShape={renderActiveShape}
+            activeShape={(props) => renderActiveShape(props, t)}
             data={dataChart}
             cx="50%"
             cy="50%"

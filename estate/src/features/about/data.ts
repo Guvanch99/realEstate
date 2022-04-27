@@ -1,26 +1,22 @@
 export const AccordionData = [
   {
     id: 'panel1a-content',
-    header: 'lorem ipsum',
-    body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget`
+    header: 'accordionHeader1',
+    body: 'accordionBody1'
   },
   {
     id: 'panel2a-content',
-    header: 'lorem ipsum',
-    body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget`
+    header: 'accordionHeader2',
+    body: 'accordionBody2'
   },
   {
     id: 'panel3a-content',
-    header: 'lorem ipsum',
-    body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget`
+    header: 'accordionHeader3',
+    body: 'accordionBody3'
   },
   {
     id: 'panel4a-content',
-    header: 'lorem ipsum',
-    body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget`
+    header: 'accordionHeader4',
+    body: 'accordionBody4'
   }
 ]

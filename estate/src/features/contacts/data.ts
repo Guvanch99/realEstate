@@ -2,16 +2,19 @@ import { TTestimonials } from './types'
 
 export const Testimonials: TTestimonials[] = [
   {
-    title: 'ADDRESS',
-    content: 'Somewhere'
+    title: 'contactTestimonial.address',
+    content: 'contactTestimonial.addressValue',
+    type: 'ADDRESS'
   },
   {
-    title: 'PHONE',
-    content: '+3750000000'
+    title: 'contactTestimonial.phone',
+    content: 'contactTestimonial.phoneValue',
+    type: 'PHONE'
   },
   {
-    title: 'EMAIL',
-    content: 'email@email.com'
+    title: 'contactTestimonial.email',
+    content: 'contactTestimonial.emailValue',
+    type: 'EMAIL'
   }
 
 ]

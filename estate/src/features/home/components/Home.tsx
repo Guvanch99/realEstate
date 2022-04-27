@@ -10,7 +10,6 @@ const Home = () => (
     <Services/>
     <Chart/>
     <Testimonial/>
-
   </>
 )
 

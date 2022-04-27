@@ -7,6 +7,9 @@ import Login from './features/auth/login/Login'
 import Register from './features/auth/register/Register'
 import Apartments from './features/apartments/list/components/Apartments'
 import DetailedApartment from './features/apartments/detail/components/DetailedApartment'
+import PageNotFound from './features/error/component/PageNotFound'
+import MainAdmin from './features/admin/main/Main'
+import LoginAdmin from './features/admin/auth/Login'
 
 const Routes = () => (
   <BrowserRouter>
@@ -20,6 +23,11 @@ const Routes = () => (
       </Route>
       <Route path="/login" element={<Login/>}/>
       <Route path="register" element={<Register/>}/>
+      <Route path="/admin" element={<MainAdmin/>}/>
+      <Route path="/admin/apartments"/>
+      <Route path="/admin/users"/>
+      <Route path="admin/login" element={<LoginAdmin/>}/>
+      <Route path="*" element={<PageNotFound/>}/>
     </RouterRoutes>
   </BrowserRouter>
 )

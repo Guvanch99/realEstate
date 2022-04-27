@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query'
-import axios from 'axios'
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
 import { TApartments } from './types'
+import { db } from '../../../firebase-config'
 
 enum QueryKey {
   Apartments = 'Apartments',
@@ -9,8 +10,10 @@ enum QueryKey {
 
 async function getApartments(): Promise<TApartments[]> {
   try {
-    const response = await axios.get('http://localhost:5001/products')
-    return response.data
+    const response = await getDocs(collection(db, 'rent')).then(({ docs }) =>
+      docs.map((doc) => ({ ...doc.data() })))
+
+    return response as TApartments[]
   } catch (e) {
     throw new Error('Something went wrong')
   }
@@ -18,8 +21,8 @@ async function getApartments(): Promise<TApartments[]> {
 
 async function getApartment(id?: string): Promise<TApartments> {
   try {
-    const response = await axios(`http://localhost:5001/products/${id}`)
-    return response.data
+    const response = await getDoc(doc(db, 'rent', id!)).then((doc) => doc.data())
+    return response as TApartments
   } catch (e) {
     throw new Error('Something went wrong')
   }
@@ -30,7 +33,10 @@ export function useApartmentQuery(id?: string) {
 
   return useQuery<TApartments, Error>(
     [key, id],
-    () => getApartment(id)
+    () => getApartment(id),
+    {
+      enabled: !!id
+    }
   )
 }
 
@@ -39,6 +45,9 @@ export function useApartmentsQuery() {
 
   return useQuery<TApartments[], Error>(
     [key],
-    getApartments
+    getApartments,
+    {
+      keepPreviousData: true
+    }
   )
 }

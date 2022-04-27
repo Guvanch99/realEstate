@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro'
 import { Outlet } from 'react-router-dom'
+import { FC } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -14,11 +15,11 @@ const LayoutStyled = styled.div`
   flex: 1 1 auto;
 `
 
-const Main = () => (
+const Main: FC = ({ children }) => (
   <Wrapper>
     <Header/>
     <LayoutStyled>
-      <Outlet/>
+      {children || <Outlet/>}
     </LayoutStyled>
     <Footer/>
   </Wrapper>

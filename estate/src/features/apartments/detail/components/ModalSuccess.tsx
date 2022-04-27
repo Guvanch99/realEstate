@@ -6,6 +6,7 @@ import {
   DialogTitle as MuiDialogTitle
 } from '@mui/material'
 import styled from 'styled-components/macro'
+import { useTranslation } from 'react-i18next'
 import { flex, fontFamily } from '../../../../styles/mxins'
 import { useApartmentContext } from '../state/useDetailedApartment'
 import { BaseButton } from '../../../../components/Button'
@@ -105,7 +106,7 @@ const ButtonActionStyled = styled(BaseButton)`
 
 const Modal = () => {
   const { isModalSuccess, handleSuccessClose } = useApartmentContext()
-
+  const { t } = useTranslation('translation')
   return (
     <MuiDialog
       sx={{ overflow: 'hidden' }}
@@ -119,16 +120,17 @@ const Modal = () => {
         x
       </IconContainerStyled>
       <DialogTitle id="alert-dialog-title">
-        Thank you for choosing us!
+        {t('modalSuccess')}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          Our Client must be
+          {t('modalPrice')}
+          500
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <ButtonActionStyled form="form" onClick={handleSuccessClose} autoFocus>
-          Submit
+          {t('submit')}
         </ButtonActionStyled>
       </DialogActions>
     </MuiDialog>

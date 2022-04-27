@@ -1,7 +1,10 @@
 import styled from 'styled-components/macro'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import Card, { CardStyled } from '../../../components/Card'
 import { WarningIcon } from '../../../components/icons/WarningIcon'
 import { flex, fontFamily } from '../../../styles/mxins'
+import Main from '../../main/components/Main'
 
 const WrapperStyled = styled.div`
   ${flex({ justify: 'center', align: 'center' })};
@@ -36,18 +39,36 @@ const ErrorTextStyled = styled.p`
   width: 282px;
 `
 
-const PageNotFound = () => (
-  <WrapperStyled>
-    <Card noPadding>
-      <ContentStyled>
-        <WarningIcon width={80} height={80}/>
-        <ErrorStatusStyled>404</ErrorStatusStyled>
-        <ErrorTextStyled>
-          The page you are looking for was moved, removed, renamed or might never existed
-        </ErrorTextStyled>
-      </ContentStyled>
-    </Card>
-  </WrapperStyled>
-)
+const NavigationBackStyled = styled.div`
+  text-align: center;
+  padding: 10px;
+  color: ${({ theme }) => theme.colors.secondary};
+  background: ${({ theme }) => theme.colors.blue200};
+  cursor: pointer;
+  width: 100px;
+  margin: 40px auto;
+  border-radius: 10px;
+`
+
+const PageNotFound = () => {
+  const { t } = useTranslation('translation')
+  const navigate = useNavigate()
+  return (
+    <Main>
+      <WrapperStyled>
+        <Card noPadding>
+          <ContentStyled>
+            <WarningIcon width={80} height={80}/>
+            <ErrorStatusStyled>404</ErrorStatusStyled>
+            <ErrorTextStyled>
+              {t('error')}
+            </ErrorTextStyled>
+            <NavigationBackStyled onClick={() => navigate(-1)}>{t('goBack')}</NavigationBackStyled>
+          </ContentStyled>
+        </Card>
+      </WrapperStyled>
+    </Main>
+  )
+}
 
 export default PageNotFound

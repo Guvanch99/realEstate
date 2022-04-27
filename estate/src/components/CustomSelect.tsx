@@ -4,11 +4,12 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import { Select as MuiSelect } from '@mui/material'
 import styled from 'styled-components/macro'
+import { Control, useController } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { flex, fontFamily } from '../styles/mxins'
-import { SelectedIcon } from './icons/SelectIcon'
 
 const Wrapper = styled.div`
-  margin-top: 8px;
+  margin: 20px 0;
   width: 260px;
 
   && {
@@ -18,16 +19,24 @@ const Wrapper = styled.div`
   }
 `
 
+const Label = styled.label`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: ${({ theme }) => theme.colors.secondary};
+`
+
 export const SelectMui = styled(MuiSelect)`
   && {
     ${fontFamily('Inter')};
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
-    color: ${({ theme }) => theme.colors.darkBlack};
+    color: ${({ theme }) => theme.colors.secondary};
 
     & > .MuiSelect-select[aria-expanded='true'] ~ fieldset.MuiOutlinedInput-notchedOutline {
       border: 1px solid ${({ theme }) => theme.colors.blue500};
+
     }
 
     & > .MuiSelect-select:focus ~ fieldset.MuiOutlinedInput-notchedOutline {
@@ -46,10 +55,11 @@ const MenuItemMui = styled(MenuItem)`
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
-    color: ${({ theme }) => theme.colors.secondary};
+    background: ${({ theme }) => theme.colors.grey300};
+    color: ${({ theme }) => theme.colors.darkBlack};
     //max-width: 233px;
     &.Mui-selected {
-      background: transparent;
+      background: ${({ theme }) => theme.colors.blue700};
     }
 
     &:hover {
@@ -74,35 +84,40 @@ export type TOption = {
 
 type TProps = {
   options: TOption[]
-  currentValue: TOption['value']
-  handleChange: (option: string) => void
+  currentValue?: TOption['value']
+  name: string
+  control: Control<any>
+  label?: string
 }
 
-const CustomSelect: FC<TProps> = ({ options, currentValue, handleChange }) => (
-  <Wrapper>
-    <FormControl fullWidth>
-      <SelectMui
-        value={currentValue}
-        onChange={({ target: { value } }) => handleChange(value as string)}
-      >
-        {
-          options.map(({ label, value }) => {
-            const isSelected = currentValue === value
-            return (
+const CustomSelect: FC<TProps> = ({ options, name, control, label }) => {
+  const { field } = useController({
+    name,
+    control
+  })
+  const { t } = useTranslation('translation')
+  return (
+    <Wrapper>
+      <Label>{t(label || '')}</Label>
+      <FormControl fullWidth>
+        <SelectMui
+          {...field}
+        >
+          {
+            options.map(({ label, value }) => (
               <MenuItemMui
                 key={value}
                 value={value}>
                 <MenuItemContent>
-                  {label}
-                  {isSelected && <SelectedIcon/>}
+                  {t(label)}
                 </MenuItemContent>
               </MenuItemMui>
-            )
-          })
-        }
-      </SelectMui>
-    </FormControl>
-  </Wrapper>
-)
+            ))
+          }
+        </SelectMui>
+      </FormControl>
+    </Wrapper>
+  )
+}
 
 export default CustomSelect

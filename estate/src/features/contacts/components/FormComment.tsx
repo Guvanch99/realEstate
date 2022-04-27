@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components/macro'
+import { useTranslation } from 'react-i18next'
 import CustomInput from '../../../components/CustomInput'
 import { emailValidation, minLengthRule, requiredRule } from '../../../components/utils/formUtils'
 import CustomTextarea from '../../../components/CustomTextarea'
@@ -32,6 +33,7 @@ const FormStyled = styled.form`
 `
 
 const FormComment = () => {
+  const { t } = useTranslation('translation')
   const { mutateAsync } = useContact()
   const { handleSubmit, control, reset } = useForm<TFormData>({
     defaultValues: {
@@ -56,31 +58,31 @@ const FormComment = () => {
           type="text"
           name="name"
           control={control}
-          placeholder="Name"
+          placeholder={t('contactForm.name')}
           rules={{
-            required: requiredRule('Please fill in all required fields.'),
+            required: requiredRule(t('require')),
             minLength: minLengthRule(4)
           }}
         />
         <CustomInput
           name="email"
           control={control}
-          placeholder="Email"
+          placeholder={t('contactForm.email')}
           rules={{
-            required: requiredRule('Please fill in all required fields.'),
+            required: requiredRule(t('require')),
             validate: emailValidation
           }}
         />
         <CustomTextarea
           name="comment"
           control={control}
-          placeholder="Comment"
+          placeholder={t('contactForm.comment')}
           rules={{
-            required: requiredRule('Please fill in all required fields.'),
+            required: requiredRule(t('require')),
             minLength: minLengthRule(15)
           }}
         />
-        <Button text="Submit" type="submit"/>
+        <Button text={t('submit')} type="submit"/>
       </FormStyled>
     </Wrapper>
   )
