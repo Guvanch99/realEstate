@@ -1,13 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import styled, { css } from 'styled-components/macro'
 import { useTranslation } from 'react-i18next'
-import { useApartmentQuery } from '../../list/queries'
+import { useApartmentQuery } from '../../queries'
 import Loader from '../../../../components/Loader'
 import ImageSlider from '../../../../components/ImageSlider'
 import { flex, fontFamily } from '../../../../styles/mxins'
 import { BaseButton } from '../../../../components/Button'
 import Modal from './Modal'
 import { DetailedApartmentProvider, useApartmentContext } from '../state/useDetailedApartment'
+import ModalSuccess from './ModalSuccess'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -86,6 +87,7 @@ const DetailedApartment = () => {
   const { t } = useTranslation('translation')
   const { id } = useParams()
   const { data: apartment, isIdle, isLoading } = useApartmentQuery(id)
+
   const { setModal } = useApartmentContext()
   if (!apartment || isIdle || isLoading) {
     return <Loader/>
@@ -150,7 +152,8 @@ const DetailedApartment = () => {
         </ContentStyled>
       </ContainerStyled>
       <ButtonBook onClick={() => setModal(true)}>{t('book')}</ButtonBook>
-      <Modal/>
+      <Modal apartmentPrice={price}/>
+      <ModalSuccess/>
     </Wrapper>
   )
 }

@@ -6,12 +6,13 @@ import {
   DialogTitle as MuiDialogTitle,
   TextField
 } from '@mui/material'
+import { differenceInDays, format, isAfter, isBefore } from 'date-fns'
 import { DatePicker, LocalizationProvider } from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import styled from 'styled-components/macro'
-import { format, isAfter, isBefore } from 'date-fns'
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
 import { flex, fontFamily } from '../../../../styles/mxins'
 import { BaseButton } from '../../../../components/Button'
 import { useApartmentContext } from '../state/useDetailedApartment'
@@ -111,13 +112,20 @@ const ErrorTextStyled = styled.p`
 `
 
 type TState = {
-  from: Date | string
-  to: Date | string
+  from: Date
+  to: Date
 }
 
-const Modal = () => {
+const Modal: FC<{ apartmentPrice: string }> = ({ apartmentPrice }) => {
+  const { id } = useParams()
   const { t } = useTranslation('translation')
-  const { isModal, setModal } = useApartmentContext()
+  const {
+    isModal,
+    setModal,
+    bookApartmentQuery: { mutateAsync },
+    setModalSuccess,
+    setTotalPrice
+  } = useApartmentContext()
   const [datePicked, setDatePicked] = useState<TState>({
     from: new Date(),
     to: new Date()
@@ -127,13 +135,18 @@ const Modal = () => {
   const onSubmit = () => {
     if (isAfter(new Date(datePicked.from), new Date(datePicked.to))) {
       setError('Date from can not be after than date to')
-    }
-    if (format(new Date(datePicked.from), 'yyyy-MM-dd') === format(new Date(datePicked.to), 'yyyy-MM-dd')) {
+    } else if (format(new Date(datePicked.from), 'yyyy-MM-dd') === format(new Date(datePicked.to), 'yyyy-MM-dd')) {
       setError('Date from can not be same date to')
-    }
-
-    if (isBefore(new Date(datePicked.to), new Date(datePicked.from))) {
+    } else if (isBefore(new Date(datePicked.to), new Date(datePicked.from))) {
       setError('Date to can not be before than date from')
+    } else {
+      const differenceDate = Math.abs(differenceInDays(datePicked.from, datePicked.to))
+
+      mutateAsync({ id: id!, date: datePicked }).then(() => {
+        setModal(false)
+        setTotalPrice(((Math.abs(differenceDate) + 1) * +apartmentPrice).toString())
+        setModalSuccess(true)
+      })
     }
   }
 
@@ -172,7 +185,7 @@ const Modal = () => {
                 setError('')
                 setDatePicked({
                   ...datePicked,
-                  from: fromDate ? format(new Date(fromDate), 'yyyy-MM-dd') : datePicked?.from
+                  from: fromDate || datePicked?.from
                 })
               }}
               renderInput={(params) => (
@@ -196,7 +209,7 @@ const Modal = () => {
                 setError('')
                 setDatePicked({
                   ...datePicked,
-                  to: toDate ? format(new Date(toDate), 'yyyy-MM-dd') : datePicked?.to
+                  to: toDate || datePicked?.to
                 })
               }}
               renderInput={(params) => (

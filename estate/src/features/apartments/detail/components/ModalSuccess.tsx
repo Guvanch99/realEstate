@@ -7,6 +7,7 @@ import {
 } from '@mui/material'
 import styled from 'styled-components/macro'
 import { useTranslation } from 'react-i18next'
+import { FC } from 'react'
 import { flex, fontFamily } from '../../../../styles/mxins'
 import { useApartmentContext } from '../state/useDetailedApartment'
 import { BaseButton } from '../../../../components/Button'
@@ -104,8 +105,8 @@ const ButtonActionStyled = styled(BaseButton)`
   }
 `
 
-const Modal = () => {
-  const { isModalSuccess, handleSuccessClose } = useApartmentContext()
+const ModalSuccess: FC = () => {
+  const { isModalSuccess, handleSuccessClose, totalPrice } = useApartmentContext()
   const { t } = useTranslation('translation')
   return (
     <MuiDialog
@@ -125,7 +126,10 @@ const Modal = () => {
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           {t('modalPrice')}
-          500
+          {' '}
+          {totalPrice}
+          {' '}
+          {t('priceCurrency')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
@@ -137,4 +141,4 @@ const Modal = () => {
   )
 }
 
-export default Modal
+export default ModalSuccess

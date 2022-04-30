@@ -63,6 +63,7 @@
   "room": "room",
   "guests": "Guests:",
   "price": "Price:",
+  "priceCurrency": "rub",
   "priceFraction": "rub/night",
   "location": "Location:",
   "description": "Description:",
@@ -94,7 +95,7 @@
   "cancel": "Cancel",
   "approve": "Approve",
   "modalSuccess": "Thank you for choosing us!",
-  "modalPrice": "Our Agents must will call you price is",
+  "modalPrice": "Our Agents must will wrote your email, your total price is",
   "login": "Login",
   "password": "Password"
 }

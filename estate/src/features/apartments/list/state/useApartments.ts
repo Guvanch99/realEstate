@@ -1,6 +1,6 @@
 import constate from 'constate'
 import { useEffect, useMemo, useState } from 'react'
-import { useApartmentsQuery } from '../queries'
+import { useApartmentsQuery } from '../../queries'
 import { TApartments, TFormData } from '../types'
 import { getUnique } from '../utils/apartmentsUtils'
 
@@ -15,7 +15,7 @@ function useApartments() {
 
   useEffect(() => {
     if (apartmentsData) {
-      setApartments(apartmentsData)
+      setApartments(apartmentsData.filter((apartment) => apartment.status === 'AVAILABLE'))
     }
   }, [apartmentsData])
 
