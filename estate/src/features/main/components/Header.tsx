@@ -1,12 +1,13 @@
 import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { flex } from '../../../styles/mxins'
+import { flex, fontFamily } from '../../../styles/mxins'
 import Switch from './Switch'
 import Language from './Language'
 import { HeaderProvider } from '../state/useHeader'
 import Navigation from './Navigation'
 import { LogoIcon } from '../../../core/svg/icons/LogoIcon'
+import { useAuthContext } from '../../auth/state/authGuard'
 
 const HeaderStyled = styled.header`
   ${flex({ justify: 'space-between', align: 'center' })};
@@ -30,6 +31,14 @@ export const CustomNavlink = styled(NavLink)`
   }
 `
 
+const LogoutStyled = styled.button`
+  ${fontFamily('Inter')};
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+`
+
 const AuthContainer = styled.div`
   ${flex({ justify: 'center', align: 'center' })};
 
@@ -40,6 +49,8 @@ const AuthContainer = styled.div`
 
 const Header = () => {
   const { t } = useTranslation('translation')
+  const { authData, removeAuthData } = useAuthContext()
+
   return (
     <HeaderStyled>
       <CustomNavlink end to="/">
@@ -51,12 +62,25 @@ const Header = () => {
       <Switch/>
       <Language/>
       <AuthContainer>
-        <CustomNavlink to="login">
-          {t('auth.signIn')}
-        </CustomNavlink>
-        <CustomNavlink to="register">
-          {t('auth.signUp')}
-        </CustomNavlink>
+        {
+          authData?.uid
+            ? (
+              <LogoutStyled onClick={removeAuthData}>
+                {t('logout')}
+              </LogoutStyled>
+            )
+            : (
+              <>
+                <CustomNavlink to="login">
+                  {t('auth.signIn')}
+                </CustomNavlink>
+                <CustomNavlink to="register">
+                  {t('auth.signUp')}
+                </CustomNavlink>
+              </>
+            )
+        }
+
       </AuthContainer>
     </HeaderStyled>
   )

@@ -10,11 +10,15 @@ import DetailedApartment from './features/apartments/detail/components/DetailedA
 import PageNotFound from './features/error/component/PageNotFound'
 import MainAdmin from './features/admin/main/Main'
 import LoginAdmin from './features/admin/auth/Login'
+import Commnets from './features/admin/comments/components/Commnets'
+import BookedApartments from './features/admin/booked-apartments/components/BookedApartments'
 
 const Routes = () => (
   <BrowserRouter>
     <RouterRoutes>
-      <Route path="" element={<Main/>}>
+      <Route
+        path=""
+        element={<Main/>}>
         <Route index element={<Home/>}/>
         <Route path="about" element={<About/>}/>
         <Route path="contacts" element={<Contacts/>}/>
@@ -24,8 +28,9 @@ const Routes = () => (
       <Route path="/login" element={<Login/>}/>
       <Route path="register" element={<Register/>}/>
       <Route path="/admin" element={<MainAdmin/>}/>
+      <Route path="/admin/comments" element={<Commnets/>}/>
       <Route path="/admin/apartments"/>
-      <Route path="/admin/users"/>
+      <Route path="/admin/booked-apartments" element={<BookedApartments/>}/>
       <Route path="admin/login" element={<LoginAdmin/>}/>
       <Route path="*" element={<PageNotFound/>}/>
     </RouterRoutes>

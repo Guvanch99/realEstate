@@ -9,6 +9,7 @@ import { GlobalStyles } from './components/GlobalStyles'
 import './core/i18n'
 import { ThemeProviderStyled, useThemeProvider } from './state/useTheme'
 import { darkTheme, lightTheme } from './styles/stylesTheme'
+import { AuthProvider } from './features/auth/state/authGuard'
 
 const App = () => {
   const { theme } = useThemeProvider()
@@ -17,7 +18,9 @@ const App = () => {
     <ThemeProvider theme={theme ? lightTheme : darkTheme}>
       <GlobalStyles/>
       <QueryClientProvider client={queryClient}>
-        <Routes/>
+        <AuthProvider>
+          <Routes/>
+        </AuthProvider>
         <ReactQueryDevtools/>
       </QueryClientProvider>
     </ThemeProvider>

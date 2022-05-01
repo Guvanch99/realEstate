@@ -97,5 +97,12 @@
   "modalPrice": "Наши агенты напишуть вам емэйл, всего:",
   "login": "Войти",
   "priceCurrency": "руб",
-  "password": "Пароль"
+  "password": "Пароль",
+  "logout": "Выйти",
+  "dontHaveAccount": "У вас нет аккаунта ?",
+  "haveAccount": " Уже имеете аккаунт ?",
+  "continueWithout": "Продолжать без <Auth>",
+  "signUp": "предлагаем регистрироватся",
+  "commentThank": "Спасибо за ваш коммент",
+  "noData": "Извините, свободных квартир нет"
 }

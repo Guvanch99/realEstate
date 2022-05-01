@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import { useTranslation } from 'react-i18next'
 import Spinner from '../../../../components/Loader'
 import { ApartmentsProvider, useApartmentsContext } from '../state/useApartments'
 import Apartment from './Apartment'
@@ -16,11 +17,19 @@ const OperationStyled = styled.div`
 
 const ApartmentsStyled = styled.div`
   width: 100%;
+  height: 100%;
   ${flex({ justify: 'center', align: 'center' })};
   flex-direction: column;
 `
 
+const NoDataText = styled.h1`
+  margin: 20%;
+  ${flex({ justify: 'center', align: 'center' })};
+
+`
+
 const Apartments = () => {
+  const { t } = useTranslation('translation')
   const { apartments, isIdle, isLoading } = useApartmentsContext()
   if (isIdle || isLoading || !apartments) {
     return <Spinner/>
@@ -34,6 +43,9 @@ const Apartments = () => {
       </OperationStyled>
       <ApartmentsStyled>
         {apartments.map((params) => <Apartment {...params}/>)}
+        {!apartments.length && (
+          <NoDataText>{t('noData')}</NoDataText>
+        )}
       </ApartmentsStyled>
     </ContainerStyled>
   )

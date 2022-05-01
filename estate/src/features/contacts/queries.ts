@@ -1,6 +1,7 @@
 import { useMutation } from 'react-query'
+import { addDoc, collection } from 'firebase/firestore'
 import { TFormData } from './types'
-import { DB } from '../../core/axios'
+import { db } from '../../firebase-config'
 
 enum QueryKeys {
   Comment = 'Comment'
@@ -11,10 +12,9 @@ type TGetUserData = {
 }
 
 async function postCommets({ user }: TGetUserData) {
-  const baseUrl = process.env.REACT_APP_HOST
   try {
-    const response = await DB.post(`${baseUrl}/auth/login`, { ...user })
-    return response.data
+    const docRef = collection(db, 'comments')
+    await addDoc(docRef, { ...user })
   } catch (err: any) {
     throw new Error('Something went wrong')
   }

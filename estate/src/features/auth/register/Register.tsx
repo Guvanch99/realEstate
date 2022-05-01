@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import styled from 'styled-components/macro'
 import { FormControlLabel as Label } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { TFormData } from './type'
 import { flex, fontFamily } from '../../../styles/mxins'
 import Button, { BaseButton } from '../../../components/Button'
@@ -60,6 +60,10 @@ const FormStyled = styled.form`
   grid-row-gap: 16px;
 `
 
+const CustomNavigation = styled(NavLink)`
+  padding: 8px 16px;
+`
+
 const Login = () => {
   const { t } = useTranslation('translation')
   const { handleSubmit, control, setError } = useForm<TFormData>({
@@ -68,9 +72,7 @@ const Login = () => {
       password: ''
     }
   })
-  const navigate = useNavigate()
   const { mutate, isError, error } = useRegisterMutation()
-
   if (isError) setError('email', { message: error?.message })
 
   return (
@@ -80,7 +82,6 @@ const Login = () => {
           <TitleStyled>{t('register')}</TitleStyled>
         </ArticleStyled>
         <FormStyled onSubmit={handleSubmit((data) => {
-          console.log('data', data)
           mutate(data)
         })}>
           <Label
@@ -115,8 +116,10 @@ const Login = () => {
             )}
             label={t('password') as string}
             labelPlacement="top"/>
-          <Button text={t('signUp')} type="submit"/>
+          <CustomNavigation to="/login">{t('dontHaveAccount')}</CustomNavigation>
+          <Button text={t('auth.signUp')} type="submit"/>
         </FormStyled>
+        <CustomNavigation to="/">{t('continueWithout')}</CustomNavigation>
       </Card>
     </LoginContainerStyled>
   )

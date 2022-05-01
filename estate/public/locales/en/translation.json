@@ -97,5 +97,12 @@
   "modalSuccess": "Thank you for choosing us!",
   "modalPrice": "Our Agents must will wrote your email, your total price is",
   "login": "Login",
-  "password": "Password"
+  "password": "Password",
+  "logout": "logout",
+  "dontHaveAccount": "Dont have account ?",
+  "haveAccount": " Already have Account ?",
+  "continueWithout": "Continue without auth",
+  "signUp": " We suggest to Sign Up",
+  "commentThank": "Thank you for your comment",
+  "noData": "Sorry,There are no apartments available"
 }

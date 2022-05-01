@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components/macro'
 import { useTranslation } from 'react-i18next'
+import { Alert, Snackbar } from '@mui/material'
+import { useEffect, useState } from 'react'
 import CustomInput from '../../../components/CustomInput'
 import { emailValidation, minLengthRule, requiredRule } from '../../../components/utils/formUtils'
 import CustomTextarea from '../../../components/CustomTextarea'
@@ -34,7 +36,8 @@ const FormStyled = styled.form`
 
 const FormComment = () => {
   const { t } = useTranslation('translation')
-  const { mutateAsync } = useContact()
+  const [isToast, setToast] = useState(false)
+  const { mutateAsync, isSuccess } = useContact()
   const { handleSubmit, control, reset } = useForm<TFormData>({
     defaultValues: {
       name: '',
@@ -42,17 +45,20 @@ const FormComment = () => {
       comment: ''
     }
   })
+  useEffect(() => {
+    if (isSuccess) setToast(true)
+  }, [isSuccess])
+
   return (
     <Wrapper>
       <FormStyled onSubmit={handleSubmit((data) => {
-        console.log('data', data)
-        // mutateAsync(data).then(() => {
-        //   reset({
-        //     name: '',
-        //     email: '',
-        //     comment: ''
-        //   })
-        // })
+        mutateAsync(data).then(() => {
+          reset({
+            name: '',
+            email: '',
+            comment: ''
+          })
+        })
       })}>
         <CustomInput
           type="text"
@@ -84,6 +90,13 @@ const FormComment = () => {
         />
         <Button text={t('submit')} type="submit"/>
       </FormStyled>
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        open={isToast}
+        onClose={() => setToast(false)}
+        autoHideDuration={6000}>
+        <Alert severity="success" sx={{ width: '100%' }}>{t('commentThank')}</Alert>
+      </Snackbar>
     </Wrapper>
   )
 }

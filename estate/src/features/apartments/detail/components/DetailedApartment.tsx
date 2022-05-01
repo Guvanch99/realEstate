@@ -9,6 +9,7 @@ import { BaseButton } from '../../../../components/Button'
 import Modal from './Modal'
 import { DetailedApartmentProvider, useApartmentContext } from '../state/useDetailedApartment'
 import ModalSuccess from './ModalSuccess'
+import { useAuthContext } from '../../../auth/state/authGuard'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -30,7 +31,7 @@ const NavigationBackStyled = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
   background: ${({ theme }) => theme.colors.blue200};
   cursor: pointer;
-  width: 100px;
+  width: 200px;
   margin: 40px auto;
   border-radius: 10px;
 `
@@ -84,6 +85,7 @@ const ButtonBook = styled(BaseButton)`
 
 const DetailedApartment = () => {
   const navigate = useNavigate()
+  const { authData } = useAuthContext()
   const { t } = useTranslation('translation')
   const { id } = useParams()
   const { data: apartment, isIdle, isLoading } = useApartmentQuery(id)
@@ -102,7 +104,7 @@ const DetailedApartment = () => {
 
   return (
     <Wrapper>
-      <NavigationBackStyled onClick={() => navigate(-1)}>Go Back</NavigationBackStyled>
+      <NavigationBackStyled onClick={() => navigate(-1)}>{t('goBack')}</NavigationBackStyled>
       <TitleStyled>{t('detailedInfo')}</TitleStyled>
       <ContainerStyled>
         <ImageContainer>
@@ -151,7 +153,11 @@ const DetailedApartment = () => {
           </TextContentStyled>
         </ContentStyled>
       </ContainerStyled>
-      <ButtonBook onClick={() => setModal(true)}>{t('book')}</ButtonBook>
+      {
+        authData?.uid
+          ? <ButtonBook onClick={() => setModal(true)}>{t('book')}</ButtonBook>
+          : <NavigationBackStyled onClick={() => navigate('/login')}>{t('signUp')}</NavigationBackStyled>
+      }
       <Modal apartmentPrice={price}/>
       <ModalSuccess/>
     </Wrapper>

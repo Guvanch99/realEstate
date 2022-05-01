@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { flex } from '../../../styles/mxins'
 import FormComment from './FormComment'
 import GetInTouch from './GetInTouch'
-import { useContact } from '../queries'
 
 const Container = styled.div`
   width: 100%;
@@ -21,7 +20,6 @@ const Title = styled.h1`
 `
 
 const Contacts = () => {
-  const { isSuccess } = useContact()
   const { t } = useTranslation('translation')
   return (
     <Container>

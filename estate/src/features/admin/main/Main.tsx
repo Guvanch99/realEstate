@@ -1,12 +1,32 @@
 import styled from 'styled-components/macro'
 import { useNavigate } from 'react-router-dom'
 import { flex, fontFamily } from '../../../styles/mxins'
+import Button, { BaseButton } from '../../../components/Button'
 
-const Wrapper = styled.div`
+const ContentWrapper = styled.div`
   ${flex({ justify: 'center', align: 'center' })}
   width: 100%;
   height: 100%;
   background: ${({ theme }) => theme.colors.lightBlue};
+  flex-direction: column;
+
+  ${BaseButton} {
+    margin-top: 40px;
+    padding: 16px;
+    background: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.white};
+
+    :hover {
+      background: ${({ theme }) => theme.colors.blue500};
+    }
+  }
+
+
+`
+
+const Wrapper = styled.div`
+  ${flex({ justify: 'center', align: 'center' })};
+  height: 100%;
 `
 
 const Card = styled.div<{ colorBg: any }>`
@@ -25,15 +45,22 @@ const Card = styled.div<{ colorBg: any }>`
 
 const MainAdmin = () => {
   const navigate = useNavigate()
+
   return (
-    <Wrapper>
-      <Card onClick={() => navigate('/admin/users')} colorBg="#ff8c00">
-        hi
-      </Card>
-      <Card onClick={() => navigate('/admin/apartments')} colorBg="#0073ff">
-        hello
-      </Card>
-    </Wrapper>
+    <ContentWrapper>
+      <Button onClick={() => navigate('/')} text="Home Page"/>
+      <Wrapper>
+        <Card onClick={() => navigate('/admin/booked-apartments')} colorBg="#ff8c00">
+          Booked Apartments
+        </Card>
+        <Card onClick={() => navigate('/admin/apartments')} colorBg="#0073ff">
+          hello
+        </Card>
+        <Card onClick={() => navigate('/admin/comments')} colorBg="#ffcf36">
+          Comments
+        </Card>
+      </Wrapper>
+    </ContentWrapper>
   )
 }
 
