@@ -33,12 +33,12 @@ const Option = styled.li<{ selected: boolean }>`
 `
 
 const GalleryContainerStyled = styled.div`
-  margin-top: 20px;
+  width: 100%;
   display: grid;
+  margin: 20px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
-  justify-items: center;
-  align-items: center;
   grid-gap: 16px;
+  justify-content: center;
 `
 
 const ImageStyled = styled.img`

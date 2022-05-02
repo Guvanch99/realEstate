@@ -73,6 +73,7 @@ const LoginAdmin = () => {
           control={(
             <CustomInput
               size="small"
+              type="password"
               name="password"
               control={control}
               placeholder="password"
