@@ -13,6 +13,8 @@ const Wrapper = styled.div`
 
 const LayoutStyled = styled.div`
   flex: 1 1 auto;
+  width: 100%;
+  min-width: 1100px;
 `
 
 const Main: FC = ({ children }) => (

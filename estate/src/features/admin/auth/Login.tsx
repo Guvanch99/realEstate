@@ -8,6 +8,7 @@ import CustomInput from '../../../components/CustomInput'
 import { requiredRule } from '../../../utils/formUtils'
 import { flex } from '../../../styles/mxins'
 import Button, { BaseButton } from '../../../components/Button'
+import { useAuthContext } from '../../auth/state/authGuard'
 
 const Container = styled.div`
   ${flex({ justify: 'center', align: 'center' })};
@@ -35,6 +36,7 @@ const FormStyled = styled.form`
 const LoginAdmin = () => {
   const [error, setError] = useState(false)
   const navigate = useNavigate()
+  const { setAdminAuth } = useAuthContext()
   const { handleSubmit, control } = useForm({
     defaultValues: {
       name: '',
@@ -44,6 +46,7 @@ const LoginAdmin = () => {
   const onSubmit = (data: any) => {
     const { name, password } = data
     if (name === 'Admin' && password === 'admin123') {
+      setAdminAuth(true)
       navigate('/admin')
     } else {
       setError(true)

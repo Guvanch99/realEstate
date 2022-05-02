@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   height: 70%;
   display: flex;
   flex-direction: column;
+  min-width: 1100px;
 `
 
 const TitleStyled = styled.h1`
@@ -40,10 +41,12 @@ const ContainerStyled = styled.div`
   ${flex({ justify: 'space-evenly', align: 'center' })};
   width: 100%;
   height: 100%;
+  flex-direction: column;
 `
 
 const ImageContainer = styled.div`
   width: 300px;
+  margin-left: -100px;
 `
 
 const ContentStyled = styled.div``

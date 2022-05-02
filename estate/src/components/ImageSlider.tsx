@@ -41,11 +41,18 @@ const BaseFigCaption = styled.figcaption<{ small?: boolean }>`
 `
 
 const FigureCaptionLeft = styled(BaseFigCaption)<{ small?: boolean }>`
-  left: ${({ small }) => (small ? 24 : 5)}%;
+  left: ${({ small }) => (small ? 40 : 5)}%;
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
 
 `
 const FigureCaptionRight = styled(BaseFigCaption)<{ small?: boolean }>`
-  right: ${({ small }) => (small ? 48 : 5)}%;
+  right: ${({ small }) => (small ? 30.6 : 5)}%;
+  @media (max-width: 1100px) {
+    display: none;
+  }
 `
 
 const IconForward = styled(ArrowForwardIosIcon)<{ small?: boolean }>`

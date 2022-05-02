@@ -9,6 +9,7 @@ import { flex } from '../../../styles/mxins'
 const Wrapper = styled.div`
   width: 100%;
   ${flex({ justify: 'space-around', align: 'center' })};
+  flex-wrap: wrap;
 `
 
 const ContainerStyled = styled.div`
@@ -23,6 +24,7 @@ const ContainerStyled = styled.div`
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   cursor: pointer;
+
 
   :hover {
     transform: scale(1.1);

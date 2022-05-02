@@ -9,6 +9,8 @@ const CardStyled = styled(NavLink)`
   ${flex({ justify: 'center', align: 'center' })};
   cursor: pointer;
   margin: 16px 0;
+  width: 100%;
+  min-width: 1100px;
 `
 
 const ImageStyled = styled.img`
