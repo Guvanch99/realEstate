@@ -12,6 +12,9 @@ import MainAdmin from './features/admin/main/Main'
 import LoginAdmin from './features/admin/auth/Login'
 import Commnets from './features/admin/comments/components/Commnets'
 import BookedApartments from './features/admin/booked-apartments/components/BookedApartments'
+import AdminApartments from './features/admin/apartments/components/AdminApartments'
+import ApartmentsAdd from './features/admin/apartmentsCE/create/components/ApartmentsAdd'
+import EditApartments from './features/admin/apartmentsCE/edit/components/EditApartments'
 
 const Routes = () => (
   <BrowserRouter>
@@ -29,7 +32,9 @@ const Routes = () => (
       <Route path="register" element={<Register/>}/>
       <Route path="/admin" element={<MainAdmin/>}/>
       <Route path="/admin/comments" element={<Commnets/>}/>
-      <Route path="/admin/apartments"/>
+      <Route path="/admin/apartments" element={<AdminApartments/>}/>
+      <Route path="admin/apartments-edit/:id" element={<EditApartments/>}/>
+      <Route path="admin/apartments/:id" element={<ApartmentsAdd/>}/>
       <Route path="/admin/booked-apartments" element={<BookedApartments/>}/>
       <Route path="admin/login" element={<LoginAdmin/>}/>
       <Route path="*" element={<PageNotFound/>}/>

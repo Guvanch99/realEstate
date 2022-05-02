@@ -82,7 +82,6 @@ const Login = () => {
           <TitleStyled>{t('login')}</TitleStyled>
         </ArticleStyled>
         <FormStyled onSubmit={handleSubmit((data) => {
-          console.log()
           mutate(data)
         })}>
           <Label

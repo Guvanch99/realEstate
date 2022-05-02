@@ -8,7 +8,7 @@ import { flex } from '../../../../styles/mxins'
 import ApartmentTable from './Table'
 import { useBookedApartments } from '../querries'
 
-const ContentStyled = styled.div`
+export const ContentStyled = styled.div`
   ${flex({ justify: 'center', align: 'center' })};
   margin: 0 auto;
   height: 100%;
@@ -16,7 +16,7 @@ const ContentStyled = styled.div`
   flex-direction: column;
 `
 
-const TableWrapper = styled.div`
+export const TableWrapper = styled.div`
   width: 100%;
   max-width: 1440px;
 `
@@ -42,7 +42,6 @@ const BookedApartments = () => {
       <TableWrapper>
         <ApartmentTable tableData={data}/>
       </TableWrapper>
-
     </ContentStyled>
   )
 }

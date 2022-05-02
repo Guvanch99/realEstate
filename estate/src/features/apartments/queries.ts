@@ -13,9 +13,8 @@ enum QueryKey {
 async function getApartments(): Promise<TApartments[]> {
   try {
     const response = await getDocs(collection(db, 'rent')).then(({ docs }) =>
-      docs.map((doc) => ({ ...doc.data() })))
-
-    return response as TApartments[]
+      docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    return response as unknown as TApartments[]
   } catch (e) {
     throw new Error('Something went wrong')
   }
@@ -43,7 +42,7 @@ async function bookApartment({ id, date }: {
 
 async function getApartment(id?: string): Promise<TApartments> {
   try {
-    const response = await getDoc(doc(db, 'rent', id!)).then((doc) => doc.data())
+    const response = await getDoc(doc(db, 'rent', id!)).then((doc) => ({ ...doc.data(), id: doc.id }))
     return response as TApartments
   } catch (e) {
     throw new Error('Something went wrong')

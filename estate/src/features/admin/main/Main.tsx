@@ -54,7 +54,7 @@ const MainAdmin = () => {
           Booked Apartments
         </Card>
         <Card onClick={() => navigate('/admin/apartments')} colorBg="#0073ff">
-          hello
+          Apartments
         </Card>
         <Card onClick={() => navigate('/admin/comments')} colorBg="#ffcf36">
           Comments

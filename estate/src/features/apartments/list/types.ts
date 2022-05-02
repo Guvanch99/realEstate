@@ -1,5 +1,5 @@
 export type TApartments = {
-  id: number,
+  id: number | string,
   room: string
   square: string
   price: string
