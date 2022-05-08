@@ -79,6 +79,7 @@ const ButtonBook = styled(BaseButton)`
     width: 150px;
     justify-self: center;
     align-self: center;
+    margin-top: 20px;
 
     :hover {
       background: ${({ theme }) => theme.colors.red};
